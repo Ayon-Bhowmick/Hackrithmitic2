@@ -1,4 +1,4 @@
-import psycopg2
+import psycopg2 
  
 DB_NAME = "pdmyimse"
 DB_USER = "pdmyimse"
