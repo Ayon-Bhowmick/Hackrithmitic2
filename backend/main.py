@@ -8,6 +8,13 @@ api = FastAPI()
 async def ping():
     return "pong"
 
-@api.get("/graph/airline")
+@api.get(
+    "/graph/airline",
+    responses = {
+        200: {
+            "content": {"image/png": {}}
+        }
+    },
+    response_class=Response)
 async def get_airline_graph():
-    return Response(content=image_bytes, media_type="image/png")
+    return Response(content=graphs, media_type="image/png")

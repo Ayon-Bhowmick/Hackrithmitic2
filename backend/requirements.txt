@@ -1,3 +1,4 @@
 fastapi==0.89.1
 matplotlib==3.6.3
 numpy==1.23.5
+twilio==7.16.2
