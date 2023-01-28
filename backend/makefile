@@ -1,4 +1,5 @@
 reqs:
+	pip install pipreqs
 	pipreqs . --force
 
 start:
