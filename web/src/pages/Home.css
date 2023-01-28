@@ -8,9 +8,13 @@ body {
 
 nav {
     background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nav-btn {
+    position: relative;
     padding: 10px 5px;
     margin-left: 20px;
     font-size: 1.75em;
@@ -45,5 +49,6 @@ nav a {
 
 #logo {
     width: 15%;
+    float: left;
 }
 
