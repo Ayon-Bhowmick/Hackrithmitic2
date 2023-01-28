@@ -1,5 +1,5 @@
 reqs:
-	pipreqs .
+	pipreqs . --force
 
 start:
 	uvicorn main:api --reload
