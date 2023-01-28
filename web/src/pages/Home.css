@@ -34,9 +34,15 @@ nav a {
     color: white;
 }
 
-.nav-btn:hover {
-    border: 2px solid rgb(255, 210, 247);
-    transition: all 0.3s ease-in-out;
+.nav-btn:hover{
+    /* border: 2px solid rgb(255, 210, 247);
+    transition: all 0.3s ease-in-out; */
+    transform: scale(1.1);
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+    outline: 2px solid rgb(255, 210, 247);
+
+    /* border: 2px solid rgb(255, 210, 247); */
 }
 
 .shadow:active {
@@ -48,6 +54,7 @@ nav a {
 }
 
 #logo {
+    position: relative;
     width: 15%;
     float: left;
 }
