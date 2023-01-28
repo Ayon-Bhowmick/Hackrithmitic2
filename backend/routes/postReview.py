@@ -1,5 +1,7 @@
 import requests
 import os
+import cohere
+from cohere.classify import Example
 
 def getAirline(flightNumber) -> str:
     map = {
@@ -51,5 +53,13 @@ def getAirline(flightNumber) -> str:
     code = flightNumber[:2]
     return map[code]
 
+def getSentiment(review):
+    co = cohere.Client("qjXHW7uXtFQR6Nz5Qml8L2oODO7CYUMxksGN331r")
+    classifications = co.classify(
+        model='large',
+        inputs=[review],
+        examples=[Example("The order came 5 days early", "positive"), Example("The item exceeded my expectations", "positive"), Example("I ordered more for my friends", "positive"), Example("I would buy this again", "positive"), Example("I would recommend this to others", "positive"), Example("The package was damaged", "negative"), Example("The order is 5 days late", "negative"), Example("The order was incorrect", "negative"), Example("I want to return my item", "negative"), Example("The item\'s material feels low quality", "negative")])
+    print(classifications.classifications["prediction"])
 
-#print(getAirline(input("Flight Number: ")))
+
+print(getSentiment(input()))
