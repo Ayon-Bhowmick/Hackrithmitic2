@@ -20,6 +20,7 @@ async def ping():
 async def get_airline_graph():
     return StreamingResponse(graphs.graphAirlines(), media_type="image/png")
 
+# !change this to get_airport_graph
 @api.get(
     "/graph/airport",
     responses = {
@@ -29,4 +30,4 @@ async def get_airline_graph():
     },
     response_class=Response)
 async def get_airport_graph():
-    return StreamingResponse(graphs.graphAirports(), media_type="image/png")
+    return StreamingResponse(graphs.graphAirlines(), media_type="image/png")
