@@ -36,6 +36,9 @@ async def get_airport_graph():
 @api.get("/display")
 async def getMessageData():
     return database.getMessageData(db)
+@api.get("/add")
+async def addPost():
+    return database.getPosts(db)
 
 @api.get("/findbyairport")
 async def getMsgByAirport():
@@ -70,4 +73,4 @@ async def getMsgByFlight(test: str = Query(None)):
     # select phone numbers from user table if flight number is #
 # get all the rating of an airline (positive or negative)
     #
-# 
+#
