@@ -52,9 +52,6 @@ def getDatatbase():
                             '''
         insertNewFlight = '''INSERT INTO airline (flight_number, airport, company)
                         VALUES ('AA9999', 'JFK', 'American Airlines');'''
-        
-        
-        #cursor.execute('''INSERT INTO airline (company) VALUES ('Spirit Airlines');''')
 
     except:
         pass
@@ -73,12 +70,8 @@ def getMessageData(cursor):
         #jObj = json.dumps(table)
         #array.append(jObj)
         array.append(table.copy())
-    
     #fetch = json.dumps(array)
     return array
-
-def getMsgByAirport(cursor):
-    pass
 
 # /findbyairline
 def getMsgByAirline(cursor, airline):
@@ -93,19 +86,26 @@ def getMsgByAirline(cursor, airline):
         table["message"] = row[0]
         table["flight_number"] = row[1]
         table["created_at"] = row[2].strftime("%Y-%m-%d %H:%M:%S")
-        #jObj = json.dumps(table)
-        #array.append(jObj)
         array.append(table.copy())
-    
-    #fetch = json.dumps(array)
-    #print(array)
     return array
 
-def getMsgByFlight(cursor):
-    pass
+def getMsgByFlight(cursor, flight):
+    array = []
+    table = {}
+    getAllMessage = f'''SELECT DISTINCT message, users.flight_number, created_at FROM users
+                    JOIN airline ON users.airline_id = airline.id
+                    WHERE users.flight_number = '{flight}';;'''
+    cursor.execute(getAllMessage)
+    fetch = cursor.fetchall()
+    for row in fetch:
+        table["message"] = row[0]
+        table["flight_number"] = row[1]
+        table["created_at"] = row[2].strftime("%Y-%m-%d %H:%M:%S")
+        array.append(table.copy())
+    return array
 
 # Testing
 
 #getPosts(getDatatbase())
-oogieboogie = getMsgByAirline(getDatatbase(), "Spirit")
+#oogieboogie = getMsgByFlight(getDatatbase(), "AA1234")
 #print(oogieboogie)

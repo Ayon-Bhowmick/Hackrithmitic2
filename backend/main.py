@@ -36,22 +36,14 @@ async def get_airport_graph():
 @api.get("/display")
 async def getMessageData():
     return database.getMessageData(db)
-@api.get("/add")
-async def addPost():
-    return database.getPosts(db)
-
-@api.get("/findbyairport")
-async def getMsgByAirport():
-    database.getMsgByAirport(db)
 
 @api.get("/findbyairline/{airline}")
 async def getMsgByAirline(airline: str):
-    # Need airline as input
     return database.getMsgByAirline(db, airline)
 
-@api.get("/findbyflight")
-async def getMsgByFlight(test: str = Query(None)):
-    database.getMsgByFlight(db)
+@api.get("/findbyflight/{flightId}")
+async def getMsgByFlight(flightId: str):
+    return database.getMsgByFlight(db, flightId)
 
 
 # Routes
