@@ -34,8 +34,8 @@ async def get_airport_graph():
     return StreamingResponse(graphs.graphAirlines(), media_type="image/png")
 
 @api.get("/add")
-async def addPost():
-    return database.getPosts(db)
+async def getMessageData():
+    return database.getMessageData(db)
 
 @api.get("/add2")
 async def addPost(db):

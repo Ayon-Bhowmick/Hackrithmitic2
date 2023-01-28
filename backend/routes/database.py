@@ -60,7 +60,7 @@ def getDatatbase():
         pass
 
 # Get a list of all the feedback
-def getMessage(cursor):
+def getMessageData(cursor):
     array = []
     table = {}
     getAllMessage = "SELECT message, flight_number, created_at FROM users;"
@@ -78,7 +78,13 @@ def getMessage(cursor):
     print(array)
     return array
 
-def getNumberbyFlight(cursor, flight):
+def getMsgByAirport():
+    pass
+
+def getMsgByAirline():
+    pass
+
+def getMsgByFlight():
     pass
 
 #getPosts(getDatatbase())

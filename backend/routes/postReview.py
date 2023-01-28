@@ -52,4 +52,4 @@ def getAirline(flightNumber) -> str:
     return map[code]
 
 
-print(getAirline(input("Flight Number: ")))
+#print(getAirline(input("Flight Number: ")))
