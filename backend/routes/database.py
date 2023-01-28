@@ -72,19 +72,40 @@ def getMessageData(cursor):
         table["created_at"] = row[2].strftime("%Y-%m-%d %H:%M:%S")
         #jObj = json.dumps(table)
         #array.append(jObj)
-        array.append(table)
+        array.append(table.copy())
     
     #fetch = json.dumps(array)
-    print(array)
     return array
 
-def getMsgByAirport():
+def getMsgByAirport(cursor):
     pass
 
-def getMsgByAirline():
+# /findbyairline
+def getMsgByAirline(cursor, airline):
+    array = []
+    table = {}
+    getAllMessage = f'''SELECT DISTINCT message, users.flight_number, created_at FROM users 
+                    JOIN airline ON users.airline_id = airline.id
+                    WHERE airline.company = '{airline}';'''
+    cursor.execute(getAllMessage)
+    fetch = cursor.fetchall()
+    for row in fetch:
+        table["message"] = row[0]
+        table["flight_number"] = row[1]
+        table["created_at"] = row[2].strftime("%Y-%m-%d %H:%M:%S")
+        #jObj = json.dumps(table)
+        #array.append(jObj)
+        array.append(table.copy())
+    
+    #fetch = json.dumps(array)
+    #print(array)
+    return array
+
+def getMsgByFlight(cursor):
     pass
 
-def getMsgByFlight():
-    pass
+# Testing
 
 #getPosts(getDatatbase())
+oogieboogie = getMsgByAirline(getDatatbase(), "Spirit")
+#print(oogieboogie)
