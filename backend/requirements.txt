@@ -7,3 +7,4 @@ pandas==1.4.3
 psycopg2==2.9.5
 requests==2.27.1
 scikit_learn==1.2.1
+psycopg2-binary==2.9.5
