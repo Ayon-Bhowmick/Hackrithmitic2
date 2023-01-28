@@ -20,7 +20,7 @@ df_train = pd.read_csv('https://github.com/clairett/pytorch-sentiment-classifica
 df_train.head()
 
 # Set the number of examples from the dataset
-num_examples = 20
+num_examples = 200
 # Create a dataframe that
 df_sample = df_train.sample(num_examples)
 
@@ -48,8 +48,8 @@ embeddings_test = co.embed(texts=sentences_test,
 
 # Here we are using the endpoint co.embed()
 
-print(f"\n\nReview text: {sentences_train[0]}")
-print(f"Embedding vector: {embeddings_train[0][:10]}")
+# print(f"\n\nReview text: {sentences_train[0]}")
+# print(f"Embedding vector: {embeddings_train[0][:10]}")
 
 # Initialize a support vector machine, with class_weight='balanced' because
 # our training set has roughly an equal amount of positive and negative
@@ -61,8 +61,8 @@ svm_classifier.fit(embeddings_train, labels_train)
 
 # get the score from the test set, and print it out to screen!
 score = svm_classifier.score(embeddings_test, labels_test)
-print(f"Validation accuracy on Large is {100*score}%!")
+# print(f"Validation accuracy on Large is {100*score}%!")
 # run the model on one one phrase
-print(embeddings_test[0])
-embed = co.embed(["I love this airline!"])
-print(svm_classifier.predict(embed))
+# print(embeddings_test[0])
+embed_test = co.embed(["I love this airline!"])
+print(svm_classifier.predict(embed_test))
