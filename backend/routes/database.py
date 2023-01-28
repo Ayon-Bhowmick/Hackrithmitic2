@@ -60,7 +60,7 @@ def getDatatbase():
         pass
 
 # Get a list of all the feedback
-def getPosts(cursor):
+def getMessage(cursor):
     array = []
     table = {}
     getAllMessage = "SELECT message, flight_number, created_at FROM users;"
