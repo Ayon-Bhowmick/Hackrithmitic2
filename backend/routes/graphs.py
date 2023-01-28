@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 from io import BytesIO
-import urllib, base64
 import numpy as np
 
 test_airlines = {
@@ -13,7 +12,6 @@ test_airlines = {
         "neg": 6
     }
 }
-
 
 
 def graphAirlines(data = test_airlines):
@@ -32,8 +30,8 @@ def graphAirlines(data = test_airlines):
     ind = np.arange(len(pos))
     width = 0.35
     fig, ax = plt.subplots()
-    rects1 = ax.bar(ind - width/2, pos, width, label="Positive")
-    rects2 = ax.bar(ind + width/2, neg, width, label="Negative")
+    rects1 = ax.bar(ind - width/2, pos, width, label="Positive", color="green")
+    rects2 = ax.bar(ind + width/2, neg, width, label="Negative", color="red")
     ax.set_ylabel("Number of Reviews")
     ax.set_title("Airline Sentiment")
     ax.set_xticks(ind)
@@ -46,4 +44,3 @@ def graphAirlines(data = test_airlines):
     plt.savefig(buf, format="png")
     buf.seek(0)
     return buf
-

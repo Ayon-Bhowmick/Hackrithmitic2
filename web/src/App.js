@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
 
+import React, { useState, useEffect } from 'react';
+import { FaTrash , FaHeart, FaPlusCircle, FaThumbsUp, FaThumbsDown} from "react-icons/fa";
+import {
+	BrowserRouter,
+	Routes,
+	Route,
+	Link
+  } from "react-router-dom";
+import Home from "./pages/Home";
+import Stats from "./pages/Stats";
+import Create from "./pages/Create";
+
+
+
+/**
+ * 
+ * @returns //sets up messages, title and body
+ */
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+	return(
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/statistics" element={<Stats />} />
+				<Route path="/create" element={<Create />} />
+			</Routes>
+		</BrowserRouter>
+	)
 }
 
 export default App;
+
+	
