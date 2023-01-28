@@ -1,0 +1,61 @@
+/*Global View akd Desktop View*/
+body {
+    margin: 0; /*Get rid of white borders*/
+    font-family:  'Asap', sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: #DEDAFE;
+}
+
+nav {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-btn {
+    position: relative;
+    padding: 10px 5px;
+    margin-left: 20px;
+    font-size: 1.75em;
+    font-weight: 600;
+    display: inline-block;
+    position: relative;
+    background-color: #8A2F8D;
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    box-shadow: 2px 2px 2px #ccc;
+
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-btn:hover{
+    /* border: 2px solid rgb(255, 210, 247);
+    transition: all 0.3s ease-in-out; */
+    transform: scale(1.1);
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+    outline: 2px solid rgb(255, 210, 247);
+
+    /* border: 2px solid rgb(255, 210, 247); */
+}
+
+.shadow:active {
+    background-color: #6b256d;
+}
+
+.shadow:active {
+    transform: scale(0.95);
+}
+
+#logo {
+    position: relative;
+    width: 15%;
+    float: left;
+}
+
