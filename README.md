@@ -4,4 +4,4 @@
 
 ```make ref``` - saves all imports into the requirement files
 
-```pip install``` -  basically npm start but python
+```make install``` -  basically npm start but python
