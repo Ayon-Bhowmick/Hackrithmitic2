@@ -1,8 +1,8 @@
 /*Global View akd Desktop View*/
 body {
-    margin: 0; /*Get rid of white borders*/
+    margin: 0; 
     font-family:  'Asap', sans-serif;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Itim', cursive;
     background-color: #DEDAFE;
 }
 
@@ -11,6 +11,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: lighter;
 }
 
 .nav-btn {
@@ -34,8 +35,6 @@ nav a {
 }
 
 .nav-btn:hover{
-    /* border: 2px solid rgb(255, 210, 247);
-    transition: all 0.3s ease-in-out; */
     transform: scale(1.1);
     transition: all 0.2s ease-in-out;
     box-sizing: border-box;

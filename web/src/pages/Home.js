@@ -2,9 +2,13 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import "./Home.css";
 import Logo from './images/logo.png';
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+</style>
 
 const Home = () => {
     return (
+        
 		<div className="app">
 			<nav>
             <img  id="logo" src={Logo} alt="SkyScout" />
