@@ -21,18 +21,6 @@ async def ping():
 async def get_airline_graph():
     return StreamingResponse(graphs.graphAirlines(), media_type="image/png")
 
-# !change this to get_airport_graph
-@api.get(
-    "/graph/airport",
-    responses = {
-        200: {
-            "content": {"image/png": {}}
-        }
-    },
-    response_class=Response)
-async def get_airport_graph():
-    return StreamingResponse(graphs.graphAirlines(), media_type="image/png")
-
 @api.get("/add")
 async def addPost():
     return database.getPosts(db)
@@ -62,4 +50,4 @@ async def addPost(db):
     # select phone numbers from user table if flight number is #
 # get all the rating of an airline (positive or negative)
     #
-# 
+#
