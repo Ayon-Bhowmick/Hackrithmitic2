@@ -1,0 +1,25 @@
+/*Global View akd Desktop View*/
+body {
+    margin: 0; /*Get rid of white borders*/
+    font-family:  'Asap', sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: #DEDAFE;
+}
+
+nav {
+    background-color: white;
+}
+
+.nav-btn {
+    padding: 10px 5px;
+    margin-left: 20px;
+    font-size: 1.75em;
+    font-weight: 600;
+    display: inline-block;
+    position: relative;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
