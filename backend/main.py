@@ -5,3 +5,4 @@ api = FastAPI()
 @api.get("/ping")
 async def ping():
     return "pong"
+
