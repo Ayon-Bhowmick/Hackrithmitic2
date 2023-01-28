@@ -1,26 +1,49 @@
 import React, { useState } from 'react';
-
+import Axios from 'axios'
 function InputBox() {
-  const [value, setValue] = useState('');
+  
+  const url = ""
+  const [data, setData]=useState({
+    title: "",
+    flightNum: "",
+    review:""
+  })
 
-  function handleChange(event) {
-    setValue(event.target.value);
+  function handle(e){
+    const newdata={...data}
+    newdata[e.target.id]=e.target.value
+    setData(newdata)
+    console.log(newdata)
   }
 
+  function submit(e){
+    e.preventDefault();
+    Axios.post(url,{
+      title: data.name,
+      flightNum: data.flightNum,
+      review: data.review
+    })
+    .then(res=>{
+      console.log(res.data)
+    })
+  }
   return (
     <div>
       <h1>
-        Submit Review
+        Write Your Review
       </h1>
       <div>
-        <form>
-          <input placeholder='Title' type="text"></input>
-        </form>
-        <form>
-          <input placeholder='flight Number' type="text"></input>
-        </form>
-        <form>
-          <input placeholder='review' type="text"></input>
+        <form onSubmit={(e)=>submit(e)}>
+          <div>
+          <input onChange={(e)=>handle(e)} id="title" value={data.title} placeholder='Title' type="text"></input>
+          </div>
+          <div>
+            <input onChange={(e)=>handle(e)} id="flightNum" value={data.flightNum} placeholder='Flight Number' type="text"></input>
+          </div>
+          <div>
+            <input onChange={(e)=>handle(e)} id="review" value={data.review} placeholder='Review' type="text"></input>
+          </div>
+          <button>Submit</button>
         </form>
       </div>
     </div>
