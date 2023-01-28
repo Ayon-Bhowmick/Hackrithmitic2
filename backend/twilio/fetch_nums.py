@@ -23,9 +23,9 @@ print(age)
 # SKY SCOUT
 
 # phone_nums = [3475268228,2674296833,6017918060,4243558411]
-phone_nums = [3475268228,2674296833,6017918060,4243558411]
+phone_nums = [3475268228,2674296833,6017918060,4243558411,9178185146]
 
-post_mgs = " WORKING BEES "
+post_mgs = "NERDS! "
 
 for num in phone_nums:
     send_text.send_text_msg(num,f"Testing 1: {post_mgs}")
