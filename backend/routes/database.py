@@ -61,12 +61,24 @@ def getDatatbase():
 
 # Get a list of all the feedback
 def getPosts(cursor):
+    array = []
+    table = {}
     getAllMessage = "SELECT message, flight_number, created_at FROM users;"
     cursor.execute(getAllMessage)
     fetch = cursor.fetchall()
-
-    #fetch = json.dumps(fetch)
-    return fetch
+    for row in fetch:
+        table["message"] = row[0]
+        table["flight_number"] = row[1]
+        table["created_at"] = row[2].strftime("%Y-%m-%d %H:%M:%S")
+        #jObj = json.dumps(table)
+        #array.append(jObj)
+        array.append(table)
+    
+    #fetch = json.dumps(array)
+    print(array)
+    return array
 
 def getNumberbyFlight(cursor, flight):
     pass
+
+#getPosts(getDatatbase())
