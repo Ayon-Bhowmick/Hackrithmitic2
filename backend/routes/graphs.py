@@ -46,11 +46,4 @@ def graphAirlines(data = test_airlines):
     plt.savefig(buf, format="png")
     buf.seek(0)
     return buf
-    # buf = io.BytesIO()
-    # plt.savefig(buf, format='png')
-    # buf.seek(0)
-    # image_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
-    # # return "data:image/png;base64,{}".format(urllib.parse.quote("image_base64"))
-    # return "data:image/png;base64,{}".format(urllib.parse.quote("ayon.png"))
 
-graphAirlines(test_airlines)
