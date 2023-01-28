@@ -1,0 +1,112 @@
+/*Global View akd Desktop View*/
+body {
+    margin: 0; 
+    font-family:  'Asap', sans-serif;
+    font-family: 'Itim', cursive;
+    background-color: #DEDAFE;
+}
+
+nav {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: lighter;
+}
+
+.nav-btn {
+    position: relative;
+    padding: 10px 5px;
+    margin-left: 20px;
+    font-size: 1.75em;
+    font-weight: 600;
+    display: inline-block;
+    position: relative;
+    background-color: #8A2F8D;
+    border-radius: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    box-shadow: 2px 2px 2px #ccc;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-btn:hover{
+    transform: scale(1.1);
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+    outline: 2px solid rgb(255, 210, 247);
+    /* border: 2px solid rgb(255, 210, 247); */
+}
+
+.shadow:active {
+    background-color: #6b256d;
+}
+
+.shadow:active {
+    transform: scale(0.95);
+}
+
+#logo {
+    position: relative;
+    width: 15%;
+    float: left;
+}
+
+
+.review-container {
+    padding: 2em;
+    padding-bottom: 0.5em;
+    /* background-color: white; */
+    text-align: center;
+    color:black;
+}
+  
+.innerWhiteBox {
+    background-color: white;
+    width: 60%;
+    margin: auto;
+    padding-bottom: 1.5em;
+}
+  
+.review-container h1 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2em;
+    /* line-height: 65px;   */
+    padding-left: 5vh;
+    padding-top: 4vh;
+    margin: auto;
+}
+  
+.pageContent p {
+    text-align: left;
+    padding-top: 1em;
+    font-size: 1em;
+    line-height: 2em;
+    margin: auto;
+    width: 80%;
+}
+
+.footer-container {
+    min-height: 70px;
+    width: 100%;
+    align-items: center; /*centers them vertically*/
+    position: absolute;
+    bottom: 0;
+}
+
+footer {
+    max-width: 800px;
+    min-height: 60px;
+    position: absolute;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    bottom: 0;
+    text-align: center;
+}
