@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
-import json
+import io
+import urllib, base64
 import numpy as np
 
 test_airlines = {
@@ -15,7 +16,7 @@ test_airlines = {
 
 
 
-def graphAirlines(data):
+def graphAirlines(data = test_airlines):
     def labelBars(rects, xpos):
         ha = {"right": "left", "left": "right"}
         offset = {"right": 1, "left": -1}
@@ -44,6 +45,10 @@ def graphAirlines(data):
     labelBars(rects1, "left")
     labelBars(rects2, "right")
     fig.tight_layout()
-    plt.show()
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    image_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
+    return "data:image/png;base64,{}".format(urllib.parse.quote(image_base64))
 
 graphAirlines(test_airlines)
