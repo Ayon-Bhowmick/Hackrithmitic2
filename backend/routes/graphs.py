@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import io
+from io import BytesIO
 import urllib, base64
 import numpy as np
 
@@ -17,17 +17,14 @@ test_airlines = {
 
 
 def graphAirlines(data = test_airlines):
-    def labelBars(rects, xpos):
-        ha = {"right": "left", "left": "right"}
-        offset = {"right": 1, "left": -1}
-
+    def labelBars(rects):
         for rect in rects:
             height = rect.get_height()
             ax.annotate("{}".format(height),
                     xy=(rect.get_x() + rect.get_width() / 2, height),
-                    xytext=(offset[xpos]*3, 3),
+                    xytext=(0, 3),
                     textcoords="offset points",
-                    ha=ha[xpos], va="bottom")
+                    ha="center", va="bottom")
 
     pos = [data[x]["pos"] for x in data.keys()]
     neg = [data[x]["neg"] for x in data.keys()]
@@ -42,13 +39,18 @@ def graphAirlines(data = test_airlines):
     ax.set_xticks(ind)
     ax.set_xticklabels(names)
     ax.legend()
-    labelBars(rects1, "left")
-    labelBars(rects2, "right")
+    labelBars(rects1)
+    labelBars(rects2)
     fig.tight_layout()
-    buf = io.BytesIO()
-    plt.savefig(buf, format='png')
+    buf = BytesIO()
+    plt.savefig(buf, format="png")
     buf.seek(0)
-    image_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
-    return "data:image/png;base64,{}".format(urllib.parse.quote(image_base64))
+    return buf
+    # buf = io.BytesIO()
+    # plt.savefig(buf, format='png')
+    # buf.seek(0)
+    # image_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
+    # # return "data:image/png;base64,{}".format(urllib.parse.quote("image_base64"))
+    # return "data:image/png;base64,{}".format(urllib.parse.quote("ayon.png"))
 
 graphAirlines(test_airlines)
