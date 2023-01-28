@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, Response, Query
 from starlette.responses import StreamingResponse
 from routes import *
 
@@ -21,14 +21,37 @@ async def ping():
 async def get_airline_graph():
     return StreamingResponse(graphs.graphAirlines(), media_type="image/png")
 
+# !change this to get_airport_graph
+@api.get(
+    "/graph/airport",
+    responses = {
+        200: {
+            "content": {"image/png": {}}
+        }
+    },
+    response_class=Response)
+async def get_airport_graph():
+    return StreamingResponse(graphs.graphAirlines(), media_type="image/png")
+
+@api.get("/display")
+async def getMessageData():
+    return database.getMessageData(db)
 @api.get("/add")
 async def addPost():
     return database.getPosts(db)
 
-@api.get("/add2")
-async def addPost(db):
-    print("hello")
-    database.getPosts(db)
+@api.get("/findbyairport")
+async def getMsgByAirport():
+    database.getMsgByAirport(db)
+
+@api.get("/findbyairline/{airline}")
+async def getMsgByAirline(airline: str):
+    # Need airline as input
+    return database.getMsgByAirline(db, airline)
+
+@api.get("/findbyflight")
+async def getMsgByFlight(test: str = Query(None)):
+    database.getMsgByFlight(db)
 
 
 # Routes
