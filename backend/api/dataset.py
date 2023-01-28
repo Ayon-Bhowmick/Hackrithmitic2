@@ -50,15 +50,15 @@ embeddings_test = co.embed(texts=sentences_test,
                              model="large",
                              truncate="LEFT").embeddings
 
-# Here we are using the endpoint co.embed() 
+# Here we are using the endpoint co.embed()
 
 print(f"\n\nReview text: {sentences_train[0]}")
 print(f"Embedding vector: {embeddings_train[0][:10]}")
 
-# Initialize a support vector machine, with class_weight='balanced' because 
-# our training set has roughly an equal amount of positive and negative 
+# Initialize a support vector machine, with class_weight='balanced' because
+# our training set has roughly an equal amount of positive and negative
 # sentiment sentences
-svm_classifier = make_pipeline(StandardScaler(), SVC(class_weight='balanced')) 
+svm_classifier = make_pipeline(StandardScaler(), SVC(class_weight='balanced'))
 
 # fit the support vector machine
 svm_classifier.fit(embeddings_train, labels_train)
@@ -66,9 +66,7 @@ svm_classifier.fit(embeddings_train, labels_train)
 # get the score from the test set, and print it out to screen!
 score = svm_classifier.score(embeddings_test, labels_test)
 print(f"Validation accuracy on Large is {100*score}%!")
-
-
-
-
-
-
+# run the model on one one phrase
+print(embeddings_test[0])
+embed = co.embed(["I love this airline!"])
+print(svm_classifier.predict(embed))
