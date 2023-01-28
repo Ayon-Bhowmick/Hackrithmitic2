@@ -24,6 +24,23 @@ const Home = () => {
                 <h2 class="nav-btn shadow"><Link to="/create">Create Review</Link></h2>
             </div>
 			</nav>
+
+
+
+            <div class="review-container">
+                <div class="innerWhiteBox">
+                    <h1>Review</h1>
+                </div>
+            </div>
+
+            <div class="footer-container">
+                <footer>
+                    <div id="copyright">
+                        <p>© 2023 SkyScout Hackrithimic 2 Hackathon Team</p>
+                    </div>
+                </footer>
+            </div>
+
 		</div>
 	);
 }

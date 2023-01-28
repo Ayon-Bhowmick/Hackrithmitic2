@@ -56,3 +56,57 @@ nav a {
     float: left;
 }
 
+
+.review-container {
+    padding: 2em;
+    padding-bottom: 0.5em;
+    /* background-color: white; */
+    text-align: center;
+    color:black;
+}
+  
+.innerWhiteBox {
+    background-color: white;
+    width: 60%;
+    margin: auto;
+    padding-bottom: 1.5em;
+}
+  
+.review-container h1 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2em;
+    /* line-height: 65px;   */
+    padding-left: 5vh;
+    padding-top: 4vh;
+    margin: auto;
+}
+  
+.pageContent p {
+    text-align: left;
+    padding-top: 1em;
+    font-size: 1em;
+    line-height: 2em;
+    margin: auto;
+    width: 80%;
+}
+
+.footer-container {
+    min-height: 70px;
+    width: 100%;
+    align-items: center; /*centers them vertically*/
+    position: absolute;
+    bottom: 0;
+}
+
+footer {
+    max-width: 800px;
+    min-height: 60px;
+    position: absolute;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    bottom: 0;
+    text-align: center;
+}
