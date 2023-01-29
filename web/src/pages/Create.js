@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Axios from 'axios'
+import './CreateReview.css'
+
 function InputBox() {
   
   const url = ""
@@ -8,6 +10,14 @@ function InputBox() {
     flightNum: "",
     review:""
   })
+
+  const changeLine = (event) =>{
+    if(event.target.value.split(" ").length >=20){
+      event.target.value = event.target.value + "\n";
+    }
+    this.setState({inputValue: event.target.value})
+  }
+
 
   function handle(e){
     const newdata={...data}
@@ -28,22 +38,27 @@ function InputBox() {
     })
   }
   return (
-    <div>
-      <h1>
+    <div className='container'>
+      <h1 className='header'>
         Write Your Review
       </h1>
-      <div>
+      <div className='sub_form'>
         <form onSubmit={(e)=>submit(e)}>
           <div>
-          <input onChange={(e)=>handle(e)} id="title" value={data.title} placeholder='Title' type="text"></input>
+          <label>Title: <br/></label>            
+          <input onChange={(e)=>handle(e)} id="title" value={data.title} placeholder='Title' type="text" className='input_field Title'></input>
           </div>
           <div>
-            <input onChange={(e)=>handle(e)} id="flightNum" value={data.flightNum} placeholder='Flight Number' type="text"></input>
+            <label>Flight Number:</label><span>*</span>
+            <br/>
+            <input onChange={(e)=>handle(e)} id="flightNum" value={data.flightNum} placeholder='Flight Number' type="text" pattern='[A-Z]{2}[0-9]{4}' className='input_field Flight' maxLength={6} required></input>
           </div>
           <div>
-            <input onChange={(e)=>handle(e)} id="review" value={data.review} placeholder='Review' type="text"></input>
+          <label>Review:</label> <span>*</span>
+            <br/>
+            <input onChange={(e)=>handle(e)} id="review" value={data.review} placeholder='Review' type="text" className='input_field Review' required></input>
           </div>
-          <button>Submit</button>
+          <button className='btn'>Submit</button>
         </form>
       </div>
     </div>
