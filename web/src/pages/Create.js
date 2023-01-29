@@ -82,8 +82,8 @@ function InputBox() {
               <label>Flight Number:</label><span> *</span>
               <br/>
               <input onChange={(e)=>{handle(e); setFlight(e.target.value);}} id="flightNum" value={data.flightNum} placeholder='Flight Number' type="text" pattern='[A-Z]{2}[0-9]{4}' className='input_field Flight' maxLength={6} required></input>
-              {Flight.length>0? 
-              <label>Flight needs to be specified!</label>:""}
+              {/* {Flight.length>0? 
+              <label>Flight needs to be 6 characters long. For example: BA2490</label>:""} */}
             </div>
             <div>
             <label>Review:</label> <span> *</span>
