@@ -18,14 +18,8 @@ const Home = () => {
 		fetch("https://sky-scout.onrender.com/display").then(response => {
 			return response.json();
 		}).then(data => {
-            // console.log("BEYONCE");
-            // console.log(data);
-		    // setMessages(data.mData);
-
-
-
-			// return data; 
-
+		    setMessages(data);
+            return data;
 		})
 
 
@@ -57,6 +51,19 @@ const Home = () => {
                 </div>
             </div>
 
+
+            <h2>All Posts</h2>
+				
+            {messages && messages.map((post) => {
+                return (
+                    <div className="post-card" key={post.title}>
+                        <h2 className="post-title"> {post.message}</h2>
+                        <h3 className="body">{post.flight_number}</h3>
+                        <h3 className="body">{post.created_at}</h3>
+                    </div>
+                );
+            })}
+            
             <div className="footer-container">
                 <footer>
                     <div id="copyright">
