@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Hackrithmitic2/static/css/main.c0a3fc7a.css",
+    "main.js": "/Hackrithmitic2/static/js/main.6e7f04ce.js",
+    "static/js/787.d1d4a2c2.chunk.js": "/Hackrithmitic2/static/js/787.d1d4a2c2.chunk.js",
+    "index.html": "/Hackrithmitic2/index.html",
+    "main.c0a3fc7a.css.map": "/Hackrithmitic2/static/css/main.c0a3fc7a.css.map",
+    "main.6e7f04ce.js.map": "/Hackrithmitic2/static/js/main.6e7f04ce.js.map",
+    "787.d1d4a2c2.chunk.js.map": "/Hackrithmitic2/static/js/787.d1d4a2c2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c0a3fc7a.css",
+    "static/js/main.6e7f04ce.js"
+  ]
+}
