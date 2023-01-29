@@ -65,4 +65,5 @@ score = svm_classifier.score(embeddings_test, labels_test)
 # run the model on one one phrase
 # print(embeddings_test[0])
 embed_test = co.embed(["I love this airline!"])
-print(svm_classifier.predict(embed_test))
+tester_result = svm_classifier.predict(embed_test)
+# print(svm_classifier.predict(embed_test))
