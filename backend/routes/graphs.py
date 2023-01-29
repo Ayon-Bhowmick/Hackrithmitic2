@@ -16,20 +16,19 @@ test_airlines = {
 
 
 def graphAirlines(data = test_airlines):
-    # def labelBars(rects):
-    #     for rect in rects:
-    #         height = rect.get_height()
-    #         ax.annotate("{}".format(height),
-    #                 xy=(rect.get_x() + rect.get_width() / 2, height),
-    #                 xytext=(0, 3),
-    #                 textcoords="offset points",
-    #                 ha="center", va="bottom")
+    def labelBars(rects):
+        for rect in rects:
+            height = rect.get_height()
+            ax.annotate("{}".format(height),
+                    xy=(rect.get_x() + rect.get_width() / 2, height),
+                    xytext=(0, 3),
+                    textcoords="offset points",
+                    ha="center", va="bottom")
 
     data = database.ratingsJsonObj(database.getDatatbase())
-    return data
-    pos = [data[x]["pos"] for x in data.keys()]
-    neg = [data[x]["neg"] for x in data.keys()]
-    names = [x for x in data.keys()]
+    pos = [data[x]["positive"] for x in range(len(data))]
+    neg = [data[x]["negative"] for x in range(len(data))]
+    names = [data[x]["company"] for x in range(len(data))]
     ind = np.arange(len(pos))
     width = 0.35
     fig, ax = plt.subplots()
