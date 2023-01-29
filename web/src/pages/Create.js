@@ -35,8 +35,6 @@ const Create = () => {
 	 * @param {text} body 
 	 */
 	const addPosts = async (titleSubmit, num, BodySubmit) => {
-    // resonse_object.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
 		try {
 			const requestOptions = {
 				method: 'POST',
@@ -56,24 +54,7 @@ const Create = () => {
 		}
 	};
 	
-	const css = `
-    .my-element {
-		text-align: center;
-		padding-top: 5vh;
-		padding-bottom: 5vh;
-		padding-right: 5vh;
-    }
 
-	textarea { 
-		font-family: 'Nunito' ; 
-		font-size: medium;
-		width: 20vw;
-		height: 20vh;
-		resize: vertical; 
-		padding: 1em;
-	}
-
-	`
 // 	const navigation = this.props.navigation;
 
 
@@ -86,8 +67,6 @@ const Create = () => {
 //html with the wepage ui: structred the same order as the web is displayed
 	return (
 		<div className="app">
-			<style>{css}</style>
-
       <nav>
             <img  id="logo" src={Logo} alt="SkyScout" />
 
@@ -143,7 +122,9 @@ const Create = () => {
 					value={body}
 					onChange={(e) => setBody(e.target.value)}
 				/> */}
-					<button type="submit" ><b><font size="+1"> Submit </font> </b></button>
+        <div>
+					<button type="submit" id="submit"><b><font size="+1"> Submit </font> </b></button>
+        </div>
 				</form>
 			</div>
 		</div>
