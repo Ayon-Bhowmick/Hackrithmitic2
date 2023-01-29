@@ -81,19 +81,21 @@ const Stats = () => {
                 <h2 className="nav-btn shadow"><Link to="/create">Create Review</Link></h2>
             </div>
 			</nav>
-
+            <div className='statistics_display'>
             <h1>Statistics</h1>
             <div>
-                {imageUrl && <img src={imageUrl} alt="My Image" />}
+                {imageUrl && <img src={imageUrl} alt="My Image" className='graph' />}
             </div>
 
-            {/* <div className="footer-container">
+            </div>
+
+            <div className="footer-container">
                 <footer>
                     <div id="copyright">
                         <p>© 2023 SkyScout Hackrithimic 2 Hackathon Team</p>
                     </div>
                 </footer>
-            </div> */}
+            </div>
 
 		</div>
 	);

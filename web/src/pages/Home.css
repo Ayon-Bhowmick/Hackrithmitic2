@@ -114,12 +114,22 @@ nav a {
   }
 
 .marker{
-    margin-top: 20px;
     font-weight: 600;
     font-size: 1.5rem;
-
 }
-
+h1{
+    font-size: 2.25rem;
+}
+.statistics_display{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* padding-top: 50px; */
+}
+.graph{
+    width: 52rem;
+}
 .pageContent p {
     text-align: left;
     padding-top: 1em;
