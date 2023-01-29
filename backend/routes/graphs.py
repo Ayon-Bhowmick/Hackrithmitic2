@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from io import BytesIO
 import numpy as np
+from . import database
 
 test_airlines = {
     "delta": {
@@ -24,14 +25,15 @@ def graphAirlines(data = test_airlines):
                     textcoords="offset points",
                     ha="center", va="bottom")
 
-    pos = [data[x]["pos"] for x in data.keys()]
-    neg = [data[x]["neg"] for x in data.keys()]
-    names = [x for x in data.keys()]
+    data = database.ratingsJsonObj(database.getDatatbase())
+    pos = [data[x]["positive"] for x in range(len(data))]
+    neg = [data[x]["negative"] for x in range(len(data))]
+    names = [data[x]["company"] for x in range(len(data))]
     ind = np.arange(len(pos))
     width = 0.35
     fig, ax = plt.subplots()
-    rects1 = ax.bar(ind - width/2, pos, width, label="Positive", color="green")
-    rects2 = ax.bar(ind + width/2, neg, width, label="Negative", color="red")
+    rects1 = ax.bar(ind - width/2, pos, width, label="Positive", color="#CBC3E3")
+    rects2 = ax.bar(ind + width/2, neg, width, label="Negative", color="#8A2F8D")
     ax.set_ylabel("Number of Reviews")
     ax.set_title("Airline Sentiment")
     ax.set_xticks(ind)

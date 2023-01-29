@@ -5,8 +5,11 @@ from twilio.rest import Client
 def send_text_msg(destination: str , msg: str):
     # Find your Account SID and Auth Token at twilio.com/console
     # and set the environment variables. See http://twil.io/secure
-    account_sid = os.environ['TWILIO_ACCOUNT_SID']
-    auth_token = os.environ['TWILIO_AUTH_TOKEN']
+    TWILIO_ACCOUNT_SID="ACe0be8e626fa245925323775409d4fbd8"
+    TWILIO_AUTH_TOKEN="5809fdf1d0ee443a56ff58dc12fbae96"
+
+    account_sid = os.environ["ACe0be8e626fa245925323775409d4fbd8"]
+    auth_token = os.environ["5809fdf1d0ee443a56ff58dc12fbae96"]
     client = Client(account_sid, auth_token)
 
     message = client.messages \
@@ -19,8 +22,8 @@ def send_text_msg(destination: str , msg: str):
     print(message.sid)
 
 
-# def main():
-#     send_text_msg('2674296833',"Testing 6: MAKE IT PURPLE")
+def main():
+    send_text_msg('2674296833',"Testing 6: MAKE IT PURPLE")
     
-# if __name__=="__main__":
-#     main()
+if __name__=="__main__":
+    main()
