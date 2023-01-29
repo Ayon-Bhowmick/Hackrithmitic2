@@ -84,7 +84,7 @@ const Create = () => {
 
 
         {/* <div  className="my-element"> */}
-        <h1>Create Review</h1>
+        <h1 className='header'>Create Review</h1>
         {/* </div> */}
         {/* <div className="add-post-container"> */}
         <div className='sub_form'>
@@ -93,7 +93,7 @@ const Create = () => {
 
           <input
             type="text"
-            className="input_field"
+            className="input_field Flight"
             name="flights"
             value={flights}
             onChange={(e) => setFlights(e.target.value)}
@@ -102,7 +102,7 @@ const Create = () => {
 
           <input
             type="text"
-            className="input_field"
+            className="input_field Title"
             name="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -110,7 +110,7 @@ const Create = () => {
           <h2> Message </h2>
           <textarea
             name=""
-            className="input_field"
+            className="input_field Review"
             id=""
             cols="10"
             rows="8"
