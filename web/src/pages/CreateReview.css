@@ -1,0 +1,115 @@
+*,*::before,*::after{
+    font-size: 20px;
+    margin: auto;
+    padding: auto;
+    font-family:  Roboto;
+    
+}
+
+.container{
+    width: 600px;
+    height: 600px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.571) ;
+    /* border: 2px rgb(134, 133, 133); */
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: column;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+/* .container2{
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+} */
+.header{
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+label{
+    font-weight: 800;
+}
+.sub_form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+span{
+    color: red;
+}
+.btn{
+    background: hsl(298, 36%, 40%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.05rem 0.25rem;
+    border-radius:10px;
+    text-transform: capitalize;
+    color: white;
+    letter-spacing: 0.05rem;
+    cursor: pointer;
+    margin-top: 0.52rem;
+    font-size: 1.3rem;
+    transition: .5s;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    -ms-border-radius:10px;
+    -o-border-radius:10px;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    -ms-transition: .5s;
+    -o-transition: .5s;
+}
+.btn:hover{
+    background-color: #b93a3a !important;
+    transition: background .5s !important;
+    -webkit-transition: background .5s !important;
+    -moz-transition: background .5s !important;
+    -ms-transition: background .5s !important;
+    -o-transition: background .5s !important;
+}
+
+.input_field{
+    border: 2.25px black solid;
+    margin: 0.5rem;
+    padding: 1rem 1.5rem;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    display: flex;
+    
+}
+
+.input_field .Title{
+    border: 2.25px black solid;
+
+}
+.input_field .Flight{
+    border: 2.25px black solid;
+}
+.input_field_Review{
+    
+
+}
