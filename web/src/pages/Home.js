@@ -55,12 +55,12 @@ const Home = () => {
             {messages && messages.map((review) => {
                 return (
                     <div className="review-container" key={review.title}>
-                        <div className="review-header">
+                        <div className="review-header" style={{ display: 'flex', flexWrap: 'nowrap', flexDirection: 'row', justifyContent: "space-between"}}>
                             <h3 className="review-num">{review.flight_number}</h3>
                             <h2 className="review-title"> {review.title}</h2>
-                            <h3 className="review-message"> {review.message}</h3>
+                            <h3 className="review-message"> {review.created_at}</h3>
                         </div>
-                        <h3 className="review-date">{review.created_at}</h3>
+                        <h3 className="review-message"> {review.message}</h3>
                     </div>
                 );
             })}
