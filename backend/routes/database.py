@@ -139,8 +139,56 @@ def addAirlineInfo(conn, airlineName, flightNum):
     except Exception as e:
         print(e)
 
-    
+def ratingsJsonObj(conn):
+    cursor = conn.cursor()
+    sql = f'''SELECT DISTINCT company FROM airlines;'''
+    cursor.execute(sql)
+    airlines = cursor.fetchall()
+    print(airlines)
 
+    for i in airlines:
+        sql = f'''SELECT COUNT(*) FROM users
+                WHERE ispositive = true
+                AND flight_number IN (SELECT flight_number FROM airlines WHERE company = '{i[0]}');'''
+        cursor.execute(sql)
+        posRes = cursor.fetchone()
+
+        sql = f'''SELECT COUNT(*) FROM users
+                WHERE ispositive = false
+                AND flight_number IN (SELECT flight_number FROM airlines WHERE company = '{i[0]}');'''
+        cursor.execute(sql)
+        negRes = cursor.fetchone()
+
+        sql = f'''SELECT COUNT(*) FROM rating WHERE company = '{i[0]}';'''
+        cursor.execute(sql)
+        result = cursor.fetchone()
+
+        if (result[0] == 1):
+            sql = f'''UPDATE rating
+                    SET positive = {posRes[0]}, negative = {negRes[0]}
+                    WHERE company = '{i[0]}';'''
+            cursor.execute(sql)
+            conn.commit()
+        else:
+            sql = f'''INSERT INTO rating (positive, negative, company)
+                    VALUES ({posRes[0]}, {negRes[0]}, '{i[0]}');'''
+            cursor.execute(sql)
+            conn.commit()
+    sql = f'''SELECT company, positive, negative FROM rating;'''
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    array = []
+    table = {}
+    for i in result:
+        table["company"] = i[0]
+        table["positive"] = i[0]
+        table["negative"] = i[0]
+        array.append(table.copy())
+    return array
+
+
+
+    
 #review(getDatatbase(), "I love delta", "delta gave me free food on the flight", "DL123", 6017918060, True)
 #addAirlineInfo(getDatatbase(), "American Airlines", "AA1111")
 # Testing
@@ -149,5 +197,5 @@ def addAirlineInfo(conn, airlineName, flightNum):
 #oogieboogie = getMsgByFlight(getDatatbase(), "AA1234")
 #print(oogieboogie)
 
-print(getMessageData(getDatatbase()))
+#print(getMessageData(getDatatbase()))
 
