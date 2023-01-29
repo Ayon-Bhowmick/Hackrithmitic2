@@ -32,7 +32,7 @@ def graphAirlines(data = test_airlines):
     ind = np.arange(len(pos))
     width = 0.35
     fig, ax = plt.subplots()
-    rects1 = ax.bar(ind - width/2, pos, width, label="Positive", color="#CBC3E3")
+    rects1 = ax.bar(ind - width/2, pos, width, label="Positive", color="#BFACCA")
     rects2 = ax.bar(ind + width/2, neg, width, label="Negative", color="#8A2F8D")
     ax.set_ylabel("Number of Reviews")
     ax.set_title("Airline Sentiment")

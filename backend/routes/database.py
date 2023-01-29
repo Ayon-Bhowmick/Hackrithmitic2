@@ -1,10 +1,16 @@
 import psycopg2
+import os
 import json
- 
+
 DB_NAME = "pdmyimse"
+# DB_NAME = os.environ["DB_NAME"]
 DB_USER = "pdmyimse"
+# DB_USER = os.environ["DB_NAME"]
 DB_PASS = "jXzVyAlo_BZgjHU5rk7gR66BD7Y_2Y4l"
+# DB_PASS = os.environ["DB_PASS"]
 DB_HOST = "raja.db.elephantsql.com"
+# DB_HOST = os.environ["DB_HOST"]
+# DB_PORT = os.environ["DB_PORT"]
 DB_PORT = "5432"
  # postgres://username:password@hostname:port/database
  # postgres://pdmyimse:jXzVyAlo_BZgjHU5rk7gR66BD7Y_2Y4l@raja.db.elephantsql.com/pdmyimse
@@ -128,16 +134,20 @@ def review(conn, title, message, flightNum, phoneNum, val):
     except Exception as e:
         print(e)
 
+
 def addAirlineInfo(conn, airlineName, flightNum):
-    try:
-        cursor = conn.cursor()
+    cursor = conn.cursor()
+    sql = f"""SELECT * FROM airlines WHERE flight_number = '{flightNum}'"""
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    print(result)
+    if(result == []):
         sql = f'''INSERT INTO airlines (company, flight_number) VALUES (%s, %s);'''
         values = (airlineName, flightNum)
         cursor.execute(sql, values)
         conn.commit()
         return 1
-    except Exception as e:
-        print(e)
+
 
 def ratingsJsonObj(conn):
     cursor = conn.cursor()
@@ -185,9 +195,27 @@ def ratingsJsonObj(conn):
         array.append(table.copy())
     return array
 
+def hasFlightNumber(conn, flight_number):
+    cursor = conn.cursor()
+    sql = f'''SELECT flight_number FROM users WHERE flight_number = '{flight_number}';'''
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    if result != None:
+        return True
+    else:
+        return False
 
+def fetchPhoneNumber(conn, flight_number):
+    cursor = conn.cursor()
+    sql = f'''SELECT DISTINCT phonenumber FROM users WHERE flight_number = '{flight_number}';'''
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    arr = []
+    for i in result:
+        arr.append(i[0])
+    return arr
 
-print(ratingsJsonObj(getDatatbase()))
+# fetchPhoneNumber(getDatatbase(), "AA1234")
 #review(getDatatbase(), "I love delta", "delta gave me free food on the flight", "DL123", 6017918060, True)
 #addAirlineInfo(getDatatbase(), "American Airlines", "AA1111")
 # Testing
@@ -195,6 +223,5 @@ print(ratingsJsonObj(getDatatbase()))
 #getPosts(getDatatbase())
 #oogieboogie = getMsgByFlight(getDatatbase(), "AA1234")
 #print(oogieboogie)
-
+addAirlineInfo(getDatatbase(), "Delta", "DL7234")
 #print(getMessageData(getDatatbase()))
-
