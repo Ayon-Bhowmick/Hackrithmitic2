@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from io import BytesIO
 import numpy as np
+from . import database
 
 test_airlines = {
     "delta": {
@@ -15,15 +16,17 @@ test_airlines = {
 
 
 def graphAirlines(data = test_airlines):
-    def labelBars(rects):
-        for rect in rects:
-            height = rect.get_height()
-            ax.annotate("{}".format(height),
-                    xy=(rect.get_x() + rect.get_width() / 2, height),
-                    xytext=(0, 3),
-                    textcoords="offset points",
-                    ha="center", va="bottom")
+    # def labelBars(rects):
+    #     for rect in rects:
+    #         height = rect.get_height()
+    #         ax.annotate("{}".format(height),
+    #                 xy=(rect.get_x() + rect.get_width() / 2, height),
+    #                 xytext=(0, 3),
+    #                 textcoords="offset points",
+    #                 ha="center", va="bottom")
 
+    data = database.ratingsJsonObj(database.getDatatbase())
+    return data
     pos = [data[x]["pos"] for x in data.keys()]
     neg = [data[x]["neg"] for x in data.keys()]
     names = [x for x in data.keys()]
