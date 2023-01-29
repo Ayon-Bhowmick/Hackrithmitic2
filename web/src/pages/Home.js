@@ -56,7 +56,7 @@ const Home = () => {
                 return (
                     <div className="review-container" key={review.title}>
                         <div className="review-header" style={{ display: 'flex', flexWrap: 'nowrap', flexDirection: 'row', justifyContent: "space-between"}}>
-                            <h3 className="review-num">{review.flight_number}</h3>
+                            <h3 className="review-num">Flight Number: {review.flight_number}</h3>
                             <h2 className="review-title"> {review.title}</h2>
                             <h3 className="review-message"> {review.created_at}</h3>
                         </div>
@@ -73,6 +73,13 @@ const Home = () => {
                 </footer>
             </div> */}
 
+            <div className="footer-container">
+                <footer>
+                    <div id="copyright">
+                        <p>© 2023 SkyScout Hackrithimic 2 Hackathon Team</p>
+                    </div>
+                </footer>
+            </div>
 		</div>
 	);
 }
