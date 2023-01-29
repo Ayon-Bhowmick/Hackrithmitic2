@@ -45,23 +45,25 @@ async def getMsgByFlight(flight_number: str = Body(..., embed=True)):
     return database.getMsgByFlight(db, flight_number)
 
 @api.post("/postreview")
-async def reviewFlight(flight_number: str = Body(...), message: str = Body(...), title: str = Body(...), phonenumber: str = Body(...)):
+async def reviewFlight(title: str = Body(...), message: str = Body(...), flight_number: str = Body(...), phonenumber: str = Body(...)):
     airline = postReview.getAirline(flight_number)
     database.addAirlineInfo(db, airline, flight_number)
 
     trueFalseVal = postReview.getSentiment(message)
-    hasFlight = database.hasFlightNumber(flight_number)
-    hasFlightPhoneNum = database.fetchPhoneNumber(flight_number)
+    # hasFlight = database.hasFlightNumber(flight_number)
+    # hasFlightPhoneNum = database.fetchPhoneNumber(flight_number)
     val = database.review(db, title, message, flight_number, phonenumber, trueFalseVal)
-
-    if val == 1 and hasFlight: # if added succesffuly, check phone number
+    return val
+    if val == 1: # if added succesffuly, check phone number
         # twilio here
         # if flight number already exist in the table, select all the numbers with the same flight number
-        
-        for i in hasFlightPhoneNum:
-            send_text.send_text_msg(i, title+": "+message)
+
+        # for i in hasFlightPhoneNum:
+        #     send_text.send_text_msg(i, title+": "+message)
+        return val
+    else:
         return{
-             "message":"Post added succesfully"
+            "message":"Post not added"
         }
 
     #except:

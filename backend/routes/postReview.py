@@ -54,6 +54,7 @@ def getAirline(flightNumber) -> str:
 
 def getSentiment(review) -> bool:
     co = cohere.Client("qjXHW7uXtFQR6Nz5Qml8L2oODO7CYUMxksGN331r")
+    # co = cohere.Client(os.environ["COHERE_KEY"])
     response = co.classify(
         model='large',
         inputs=[review],
