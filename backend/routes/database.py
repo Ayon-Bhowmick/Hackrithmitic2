@@ -60,7 +60,6 @@ def getMessageData(conn):
     cursor = conn.cursor()
     array = []
     table = {}
-    # SELECT message FROM users WHERE message IS NOT NULL;
     getAllMessage = "SELECT title, message, flight_number, created_at FROM users WHERE message IS NOT NULL;"
     cursor.execute(getAllMessage)
     fetch = cursor.fetchall()
@@ -69,10 +68,7 @@ def getMessageData(conn):
         table["message"] = row[1]
         table["flight_number"] = row[2]
         table["created_at"] = row[3].strftime("%Y-%m-%d %H:%M:%S")
-        #jObj = json.dumps(table)
-        #array.append(jObj)
         array.append(table.copy())
-    #fetch = json.dumps(array)
     return array
 
 # /findbyairline
@@ -144,6 +140,7 @@ def addAirlineInfo(conn, airlineName, flightNum):
         print(e)
 
     
+
 #review(getDatatbase(), "I love delta", "delta gave me free food on the flight", "DL123", 6017918060, True)
 #addAirlineInfo(getDatatbase(), "American Airlines", "AA1111")
 # Testing
