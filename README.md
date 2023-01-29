@@ -10,6 +10,10 @@
 ## Start Frontend
 ```cd frontend```
 
-```npm install``` - installs all dependencies
-
+installs all dependencies
+```
+npm install
+npm i react-router-dom
+npm i react-icons
+```
 ```npm start``` - starts frontend
