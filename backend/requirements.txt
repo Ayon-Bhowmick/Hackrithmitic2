@@ -3,3 +3,4 @@ starlette==0.22.0
 fastapi==0.89.1
 matplotlib==3.5.3
 numpy==1.24.1
+uvicorn==0.20.0
