@@ -19,8 +19,9 @@ def getDatatbase():
         if (conn == None):
             print("Error: psycopg2.connect() returned a None object")
             return None
-        cursor = conn.cursor()
-        return cursor
+        #cursor = conn.cursor()
+        #return cursor
+        return conn
 
     except Exception as e:
         print("Database not connected successfully")
@@ -35,13 +36,14 @@ def getDatatbase():
                             );'''
         createUserTable = '''CREATE TABLE users (
                             id SERIAL PRIMARY KEY,
-                            message VARCHAR(255) NOT NULL,
+                            title VARCHAR(255) DEFAULT NULL,
+                            message TEXT DEFAULT NULL,
                             flight_number VARCHAR(255) NOT NULL,
                             phonenumber BIGINT,
-                            created_at TIMESTAMP NOT NULL DEFAULT NOW()
+                            created_at TIMESTAMP NOT NULL DEFAULT NOW(),
                             rating INTEGER,
-                            ispositive BOOLEAN;
-                            airline_id INTEGER REFERENCES airline(id);
+                            ispositive BOOLEAN,
+                            airline_id INTEGER REFERENCES airline(id)
                             );'''
         createRatingTable = '''CREATE TABLE rating (
                             id SERIAL PRIMARY KEY,
@@ -57,16 +59,18 @@ def getDatatbase():
         pass
 
 # Get a list of all the feedback
-def getMessageData(cursor):
+def getMessageData(conn):
+    cursor = conn.cursor()
     array = []
     table = {}
-    getAllMessage = "SELECT message, flight_number, created_at FROM users;"
+    getAllMessage = "SELECT title, message, flight_number, created_at FROM users;"
     cursor.execute(getAllMessage)
     fetch = cursor.fetchall()
     for row in fetch:
-        table["message"] = row[0]
-        table["flight_number"] = row[1]
-        table["created_at"] = row[2].strftime("%Y-%m-%d %H:%M:%S")
+        table["title"] = row[0]
+        table["message"] = row[1]
+        table["flight_number"] = row[2]
+        table["created_at"] = row[3].strftime("%Y-%m-%d %H:%M:%S")
         #jObj = json.dumps(table)
         #array.append(jObj)
         array.append(table.copy())
@@ -74,38 +78,73 @@ def getMessageData(cursor):
     return array
 
 # /findbyairline
-def getMsgByAirline(cursor, airline):
+def getMsgByAirline(conn, airline):
+    cursor = conn.cursor()
     array = []
     table = {}
-    getAllMessage = f'''SELECT DISTINCT message, users.flight_number, created_at FROM users 
+    getAllMessage = f'''SELECT DISTINCT title, message, users.flight_number, created_at FROM users 
                     JOIN airline ON users.airline_id = airline.id
                     WHERE airline.company = '{airline}';'''
     cursor.execute(getAllMessage)
     fetch = cursor.fetchall()
     for row in fetch:
-        table["message"] = row[0]
-        table["flight_number"] = row[1]
-        table["created_at"] = row[2].strftime("%Y-%m-%d %H:%M:%S")
+        table["title"] = row[0]
+        table["message"] = row[1]
+        table["flight_number"] = row[2]
+        table["created_at"] = row[3].strftime("%Y-%m-%d %H:%M:%S")
         array.append(table.copy())
     return array
 
-def getMsgByFlight(cursor, flight):
+def getMsgByFlight(conn, flight):
+    cursor = conn.cursor()
     array = []
     table = {}
-    getAllMessage = f'''SELECT DISTINCT message, users.flight_number, created_at FROM users
+    getAllMessage = f'''SELECT DISTINCT title, message, users.flight_number, created_at FROM users
                     JOIN airline ON users.airline_id = airline.id
                     WHERE users.flight_number = '{flight}';;'''
     cursor.execute(getAllMessage)
     fetch = cursor.fetchall()
     for row in fetch:
-        table["message"] = row[0]
-        table["flight_number"] = row[1]
-        table["created_at"] = row[2].strftime("%Y-%m-%d %H:%M:%S")
+        table["title"] = row[0]
+        table["message"] = row[1]
+        table["flight_number"] = row[2]
+        table["created_at"] = row[3].strftime("%Y-%m-%d %H:%M:%S")
         array.append(table.copy())
     return array
 
-# Testing
 
+def addUser(cursor, user, flight, phoneNumber, mess):
+    
+    pass
+
+def subscribe(conn, flight, phoneNumber):
+    try:
+        cursor = conn.cursor()
+        sql = f'''INSERT INTO users (flight_number, phonenumber) VALUES (%s, %s);'''
+        values = (flight, phoneNumber)
+        cursor.execute(sql, values)
+        conn.commit()
+        return 1
+    except Exception as e:
+        print(e)
+
+
+def review(conn, title, message, flightNum, phoneNum):
+    try:
+        cursor = conn.cursor()
+        sql = f'''INSERT INTO users (title, message, flight_number, phonenumber) VALUES (%s, %s, %s, %s);'''
+        values = (title, message, flightNum, phoneNum)
+        cursor.execute(sql, values)
+        conn.commit()
+        return 1
+    except Exception as e:
+        print(e)
+
+    
+review(getDatatbase(), "I love delta", "delta gave me free food on the flight", "DL123", 6017918060)
+
+# Testing
+#subscribe(getDatatbase(), "AA1234", 6017918060)
 #getPosts(getDatatbase())
 #oogieboogie = getMsgByFlight(getDatatbase(), "AA1234")
 #print(oogieboogie)
