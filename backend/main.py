@@ -4,9 +4,6 @@ from starlette.responses import StreamingResponse
 from routes import *
 
 
-
-
-
 api = FastAPI()
 db = database.getDatatbase()
 

@@ -1,5 +1,6 @@
 import cohere
 from cohere.classify import Example
+import os
 
 def getAirline(flightNumber) -> str:
     map = {
