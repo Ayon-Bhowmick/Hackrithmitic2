@@ -126,7 +126,7 @@ const Create = () => {
 					onChange={(e) => setBody(e.target.value)}
 				    /> */}
           {/* <div> */}
-          <button className='btn' type="submit" id="submit"  ><b><font size="+1"> Submit </font> </b></button>
+          <button className='btn' type="submit" id="submit"  ><b><font size="+3"> Submit </font> </b></button>
           {/* </div> */}
         </form>
         </div>
