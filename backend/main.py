@@ -50,7 +50,7 @@ async def getMsgByFlight(flightId: str):
 @api.post("/postreview")
 async def reviewFlight(title: str = Body(...), message: str = Body(...), flight_number: str = Body(...), phonenumber: str = Body(...)):
     try:
-
+        val = postReview.veri
         res = database.reviewFlight(db, title, message, flight_number, phonenumber)
         if res == 1:
             return {
