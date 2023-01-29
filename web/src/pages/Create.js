@@ -13,7 +13,6 @@ function InputBox() {
   let [ReviewError, setReviewError] = useState(false);
 
   function handleSubmit(e) {
-    console.log('entered');
     e.preventDefault();
     let regex = /^[A-Z]{2}[0-9]{4}$/g;
     let found = Flight.match(regex);
@@ -28,14 +27,14 @@ function InputBox() {
     else {
       setError(false);
     }
-    if (Flight && Review) {
-      console.log('Flight: ', Flight, '\nReview: ', Review);
-    }
+    // if (Flight && Review) {
+      // console.log('Flight: ', Flight, '\nReview: ', Review);
+    // }
 
   }
 
 
-  const url = ""
+  const url = "https://sky-scout.onrender.com/postreview";
   const [data, setData] = useState({
     title: "",
     flightNum: "",
@@ -48,7 +47,7 @@ function InputBox() {
     const newdata = { ...data }
     newdata[e.target.id] = e.target.value
     setData(newdata)
-    console.log(newdata)
+    // console.log(newdata)
   }
 
   function submit(e) {
@@ -60,7 +59,7 @@ function InputBox() {
       phoneNum: data.phoneNum
     })
       .then(res => {
-        console.log(res.data)
+        console.log(res.data);
       })
   }
   return (
@@ -96,7 +95,6 @@ function InputBox() {
               <br />
               <input onChange={(e) => { handle(e); }} id="phonenum" value={data.phonenum} placeholder='xxx-xxx-xxxx' type="text" pattern='[0-9]{3}[0-9]{3}[0-9]{4}' className='input_field Phone' maxLength={10} ></input>
             </div>
-
             <div>
               <label>Flight Number:</label><span> *</span>
               <br />

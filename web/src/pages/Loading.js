@@ -5,7 +5,7 @@ function Loading() {
 
     return (
         <div className='load_container'>
-        <div class="loader"></div>
+        <div className="loader"></div>
         <div className='marker'> 
             Waiting to Load...
         </div>
