@@ -48,6 +48,11 @@
 label{
     font-weight: 800;
 }
+
+.error{
+    color: red;
+    font-size: 15px;
+}
 .sub_form{
     display: flex;
     align-items: center;
