@@ -1,7 +1,15 @@
 # Helpful Commands
 
+## Start Backend
+```cd backend```
+
+```make install``` - installs all dependencies
+
 ```make start``` - starts api
 
-```make ref``` - saves all imports into the requirement files
+## Start Frontend
+```cd frontend```
 
-```make install``` -  basically npm start but python
+```npm install``` - installs all dependencies
+
+```npm start``` - starts frontend
