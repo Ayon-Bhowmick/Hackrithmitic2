@@ -35,7 +35,7 @@ nav a {
 
 .nav-btn:hover{
     transform: scale(1.1);
-    transition: all 0.2s ease-in-out;
+    transition: all 0.1s ease-in-out;
     box-sizing: border-box;
     outline: 2px solid rgb(255, 210, 247);
     /* border: 2px solid rgb(255, 210, 247); */
@@ -80,7 +80,46 @@ nav a {
     padding-top: 4vh;
     margin: auto;
 }
+.load_container{
+    padding: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 220px;
+    height: 220px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
   
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+.marker{
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 1.5rem;
+
+}
+
 .pageContent p {
     text-align: left;
     padding-top: 1em;
@@ -108,4 +147,29 @@ footer {
     margin-right: auto; 
     bottom: 0;
     text-align: center;
+}
+
+
+.review-container {
+    background-color: white;
+    width: 60%;
+    margin: auto;
+    padding-bottom: 1.5em;
+}
+  
+.review-container h1 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2em;
+    /* line-height: 65px;   */
+    padding-left: 5vh;
+    padding-top: 4vh;
+    margin: auto;
+}
+
+#home-reviews-title {
+    position: relative;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 2.25em;
 }

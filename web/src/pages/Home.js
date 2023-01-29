@@ -45,32 +45,33 @@ const Home = () => {
             </div>
 			</nav>
 
-            <div className="review-container">
+            {/* <div className="review-container">
                 <div className="innerWhiteBox">
                     <h1>Review</h1>
                 </div>
-            </div>
-
-
-            <h2>All Posts</h2>
+            </div> */}
+            <h1 id="home-reviews-title">Reviews:</h1>
 				
-            {messages && messages.map((post) => {
+            {messages && messages.map((review) => {
                 return (
-                    <div className="post-card" key={post.title}>
-                        <h2 className="post-title"> {post.message}</h2>
-                        <h3 className="body">{post.flight_number}</h3>
-                        <h3 className="body">{post.created_at}</h3>
+                    <div className="review-container" key={review.title}>
+                        <div className="review-header">
+                            <h3 className="review-num">{review.flight_number}</h3>
+                            <h2 className="review-title"> {review.title}</h2>
+                            <h3 className="review-message"> {review.message}</h3>
+                        </div>
+                        <h3 className="review-date">{review.created_at}</h3>
                     </div>
                 );
             })}
-            
-            <div className="footer-container">
+
+            {/* <div className="footer-container">
                 <footer>
                     <div id="copyright">
                         <p>© 2023 SkyScout Hackrithimic 2 Hackathon Team</p>
                     </div>
                 </footer>
-            </div>
+            </div> */}
 
 		</div>
 	);
