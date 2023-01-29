@@ -7,7 +7,7 @@ DB_NAME = os.environ["DB_NAME"]
 # DB_USER = "pdmyimse"
 DB_USER = os.environ["DB_NAME"]
 # DB_PASS = "jXzVyAlo_BZgjHU5rk7gR66BD7Y_2Y4l"
-DB_PASS = os.environ["DB_PASS"]
+# DB_PASS = os.environ["DB_PASS"]
 # DB_HOST = "raja.db.elephantsql.com"
 DB_HOST = os.environ["DB_HOST"]
 DB_PORT = os.environ["DB_PORT"]
@@ -211,7 +211,7 @@ def fetchPhoneNumber(conn, flight_number):
         arr.append(i[0])
     return arr
 
-fetchPhoneNumber(getDatatbase(), "AA1234")
+# fetchPhoneNumber(getDatatbase(), "AA1234")
 #review(getDatatbase(), "I love delta", "delta gave me free food on the flight", "DL123", 6017918060, True)
 #addAirlineInfo(getDatatbase(), "American Airlines", "AA1111")
 # Testing

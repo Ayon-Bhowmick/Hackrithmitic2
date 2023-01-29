@@ -8,7 +8,7 @@ def send_text_msg(destination: str , msg: str):
     account_sid = os.environ['TWILIO_ACCOUNT_SID']
     auth_token = os.environ['TWILIO_AUTH_TOKEN']
     client = Client(account_sid, auth_token)
-    
+
 
     message = client.messages \
         .create(
@@ -16,12 +16,12 @@ def send_text_msg(destination: str , msg: str):
             from_='+19096711856',
             to=destination
         )
-    return 
-    print(message.sid)
+    return
+    # print(message.sid)
 
 
 #def main():
 #    send_text_msg('2674296833',"Testing 6: MAKE IT PURPLE")
-#    
+#
 #if __name__=="__main__":
 #    main()
