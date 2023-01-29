@@ -52,15 +52,12 @@ def getDatatbase():
                             '''
         insertNewFlight = '''INSERT INTO airline (flight_number, airport, company)
                         VALUES ('AA9999', 'JFK', 'American Airlines');'''
-        
-        
-        #cursor.execute('''INSERT INTO airline (company) VALUES ('Spirit Airlines');''')
 
     except:
         pass
 
 # Get a list of all the feedback
-def getMessage(cursor):
+def getMessageData(cursor):
     array = []
     table = {}
     getAllMessage = "SELECT message, flight_number, created_at FROM users;"
@@ -72,13 +69,43 @@ def getMessage(cursor):
         table["created_at"] = row[2].strftime("%Y-%m-%d %H:%M:%S")
         #jObj = json.dumps(table)
         #array.append(jObj)
-        array.append(table)
-    
+        array.append(table.copy())
     #fetch = json.dumps(array)
-    print(array)
     return array
 
-def getNumberbyFlight(cursor, flight):
-    pass
+# /findbyairline
+def getMsgByAirline(cursor, airline):
+    array = []
+    table = {}
+    getAllMessage = f'''SELECT DISTINCT message, users.flight_number, created_at FROM users 
+                    JOIN airline ON users.airline_id = airline.id
+                    WHERE airline.company = '{airline}';'''
+    cursor.execute(getAllMessage)
+    fetch = cursor.fetchall()
+    for row in fetch:
+        table["message"] = row[0]
+        table["flight_number"] = row[1]
+        table["created_at"] = row[2].strftime("%Y-%m-%d %H:%M:%S")
+        array.append(table.copy())
+    return array
+
+def getMsgByFlight(cursor, flight):
+    array = []
+    table = {}
+    getAllMessage = f'''SELECT DISTINCT message, users.flight_number, created_at FROM users
+                    JOIN airline ON users.airline_id = airline.id
+                    WHERE users.flight_number = '{flight}';;'''
+    cursor.execute(getAllMessage)
+    fetch = cursor.fetchall()
+    for row in fetch:
+        table["message"] = row[0]
+        table["flight_number"] = row[1]
+        table["created_at"] = row[2].strftime("%Y-%m-%d %H:%M:%S")
+        array.append(table.copy())
+    return array
+
+# Testing
 
 #getPosts(getDatatbase())
+#oogieboogie = getMsgByFlight(getDatatbase(), "AA1234")
+#print(oogieboogie)

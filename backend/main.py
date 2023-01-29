@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, Response, Query
 from starlette.responses import StreamingResponse
 from routes import *
 
@@ -33,14 +33,17 @@ async def get_airline_graph():
 async def get_airport_graph():
     return StreamingResponse(graphs.graphAirlines(), media_type="image/png")
 
-@api.get("/add")
-async def addPost():
-    return database.getPosts(db)
+@api.get("/display")
+async def getMessageData():
+    return database.getMessageData(db)
 
-@api.get("/add2")
-async def addPost(db):
-    print("hello")
-    database.getPosts(db)
+@api.get("/findbyairline/{airline}")
+async def getMsgByAirline(airline: str):
+    return database.getMsgByAirline(db, airline)
+
+@api.get("/findbyflight/{flightId}")
+async def getMsgByFlight(flightId: str):
+    return database.getMsgByFlight(db, flightId)
 
 
 # Routes
@@ -62,4 +65,4 @@ async def addPost(db):
     # select phone numbers from user table if flight number is #
 # get all the rating of an airline (positive or negative)
     #
-# 
+#
