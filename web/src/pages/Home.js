@@ -73,13 +73,13 @@ const Home = () => {
                 </footer>
             </div> */}
 
-            <div className="footer-container">
+            {/* <div className="footer-container">
                 <footer>
                     <div id="copyright">
                         <p>© 2023 SkyScout Hackrithimic 2 Hackathon Team</p>
                     </div>
                 </footer>
-            </div>
+            </div> */}
 		</div>
 	);
 }

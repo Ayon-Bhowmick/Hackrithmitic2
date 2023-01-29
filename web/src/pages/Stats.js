@@ -35,11 +35,11 @@ const Stats = () => {
     if(loading){
         return (
             <div className="app">
-                <nav>
+     		<nav>
             <img  id="logo" src={Logo} alt="SkyScout" />
 
             {/* route to Home page */}
-            <div>
+            <div className='nav-btn-container'>
                 <h2 className="nav-btn shadow"><Link to="/">Home</Link></h2>
                 
                 {/* route to Statistics page */}
@@ -49,16 +49,15 @@ const Stats = () => {
                 <h2 className="nav-btn shadow"><Link to="/create">Create Review</Link></h2>
             </div>
 			</nav>
-
             <Loading />
 
-            <div className="footer-container">
+            {/* <div className="footer-container">
                 <footer>
                     <div id="copyright">
                         <p>© 2023 SkyScout Hackrithimic 2 Hackathon Team</p>
                     </div>
                 </footer>
-            </div>
+            </div> */}
 
             </div>
         );
@@ -89,13 +88,13 @@ const Stats = () => {
 
             </div>
 
-            <div className="footer-container">
+            {/* <div className="footer-container">
                 <footer>
                     <div id="copyright">
                         <p>© 2023 SkyScout Hackrithimic 2 Hackathon Team</p>
                     </div>
                 </footer>
-            </div>
+            </div> */}
 
 		</div>
 	);

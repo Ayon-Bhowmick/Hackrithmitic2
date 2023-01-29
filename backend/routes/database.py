@@ -223,5 +223,5 @@ def fetchPhoneNumber(conn, flight_number):
 #getPosts(getDatatbase())
 #oogieboogie = getMsgByFlight(getDatatbase(), "AA1234")
 #print(oogieboogie)
-addAirlineInfo(getDatatbase(), "Delta", "DL7234")
+# addAirlineInfo(getDatatbase(), "Delta", "DL7234")
 #print(getMessageData(getDatatbase()))
