@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Response, Query
+from fastapi import FastAPI, Response, Body, HTTPException
 from starlette.responses import StreamingResponse
 from routes import *
 
@@ -44,6 +44,35 @@ async def getMsgByAirline(airline: str):
 @api.get("/findbyflight/{flightId}")
 async def getMsgByFlight(flightId: str):
     return database.getMsgByFlight(db, flightId)
+
+@api.post("/postreview")
+async def reviewFlight(title: str = Body(...), message: str = Body(...), flight_number: str = Body(...), phonenumber: str = Body(...)):
+    try:
+
+        res = database.reviewFlight(db, title, message, flight_number, phonenumber)
+        if res == 1:
+            return {
+                "message":"Post added successfully"
+            }
+    except:
+        raise HTTPException(status_code=400, detail="Error adding user to the database")
+
+
+
+@api.post("/subscribe")
+async def subscribeToFlight(flight_number: str = Body(...), phonenumber: str = Body(...)):
+
+    try:
+        res = database.subscribe(db, flight_number, phonenumber)
+        if (res == 1):
+            return {
+                "message":"User added succesfully"
+            }
+    except:
+        raise HTTPException(status_code=400, detail="Error adding user to the database")
+
+
+#@api.delete("/unsubscribe")
 
 
 # Routes
