@@ -158,3 +158,4 @@ def addAirlineInfo(conn, airlineName, flightNum):
 #print(oogieboogie)
 
 print(getMessageData(getDatatbase()))
+
