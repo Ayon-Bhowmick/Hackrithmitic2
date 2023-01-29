@@ -64,20 +64,20 @@ function InputBox() {
   }
   return (
     <div>
-      <nav>
-        <img id="logo" src={Logo} alt="SkyScout" />
+			<nav>
+            <img  id="logo" src={Logo} alt="SkyScout" />
 
-        {/* route to Home page */}
-        <div>
-          <h2 className="nav-btn shadow"><Link to="/">Home</Link></h2>
-
-          {/* route to Statistics page */}
-          <h2 className="nav-btn shadow"><Link to="/statistics">Statistics</Link></h2>
-
-          {/* route to Create Review page */}
-          <h2 className="nav-btn shadow"><Link to="/create">Create Review</Link></h2>
-        </div>
-      </nav>
+            {/* route to Home page */}
+            <div className='nav-btn-container'>
+                <h2 className="nav-btn shadow"><Link to="/">Home</Link></h2>
+                
+                {/* route to Statistics page */}
+                <h2 className="nav-btn shadow"><Link to="/statistics">Statistics</Link></h2>
+            
+                {/* route to Create Review page */}
+                <h2 className="nav-btn shadow"><Link to="/create">Create Review</Link></h2>
+            </div>
+			</nav>
 
       <div className='container'>
 
@@ -115,13 +115,13 @@ function InputBox() {
         </div>
       </div>
 
-      <div className="footer-container">
+      {/* <div className="footer-container">
         <footer>
           <div id="copyright">
             <p>© 2023 SkyScout Hackrithimic 2 Hackathon Team</p>
           </div>
         </footer>
-      </div>
+      </div> */}
     </div>
   );
 }
