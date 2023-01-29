@@ -9,16 +9,27 @@ function InputBox() {
   
   const [Flight, setFlight] = useState('');
   const [Review, setReview] = useState('');
-  const [error, setError] = useState(false);
+  let [error, setError] = useState(false);
+  let [ReviewError, setReviewError] = useState(false);
 
   function handleSubmit(e){
     console.log('entered');
     e.preventDefault();
-    if(Flight.length === 0 || Review.length === 0){
+    let regex = /^[A-Z]{2}[0-9]{4}$/g;
+    let found = Flight.match(regex);
+    console.log('Found: ', found);
+
+    if(found == null ){
       setError(true);
     }
+    if(Review.length === 0){
+      setReviewError(true);
+    }
+    else{
+      setError(false);
+    }
     if(Flight&&Review){
-      console.log('flight: ', Flight, '\nReview ', Review);
+      console.log('Flight: ', Flight, '\nReview: ', Review);
     }
 
   }
@@ -73,7 +84,7 @@ function InputBox() {
           Write Your Review
         </h1>
         <div className='sub_form'>
-          <form onSubmit={(e)=>{submit(e); handleSubmit(e)}}>
+          <form onSubmit={(e)=>{handleSubmit(e); submit(e); }}>
             <div>
             <label>Title: <br/></label>            
             <input onChange={(e)=>handle(e)} id="title" value={data.title} placeholder='Title' type="text" className='input_field Title'></input>
@@ -82,15 +93,20 @@ function InputBox() {
               <label>Flight Number:</label><span> *</span>
               <br/>
               <input onChange={(e)=>{handle(e); setFlight(e.target.value);}} id="flightNum" value={data.flightNum} placeholder='Flight Number' type="text" pattern='[A-Z]{2}[0-9]{4}' className='input_field Flight' maxLength={6} required></input>
-              {Flight.length>0? 
-              <label>Flight needs to be specified!</label>:""}
+              {(error === true )? 
+              <label className='error'>Flight needs to be specified! <br/>Example: AA1234</label>:""}
+              
             </div>
             <div>
             <label>Review:</label> <span> *</span>
               <br/>
               <input onChange={(e)=>{handle(e); setReview(e.target.value);}} id="review" value={data.review} placeholder='Review' type="text" className='input_field Review' required></input>
+              {ReviewError&&Review.length<=0? 
+              <label className='error'>Review needs to be entered!</label>:""}
+              
             </div>
-            <button className='btn'  > Submit</button>
+            <button className='btn' onChange={(e) => handleSubmit(e)}  onClick={(e)=>{handleSubmit(e)}}> Submit</button>
+            {/* {error&&Flight?"hello":"no error"} */}
           </form>
         </div>
       </div>
