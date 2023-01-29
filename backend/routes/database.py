@@ -185,9 +185,27 @@ def ratingsJsonObj(conn):
         array.append(table.copy())
     return array
 
+def hasFlightNumber(conn, flight_number):
+    cursor = conn.cursor()
+    sql = f'''SELECT flight_number FROM users WHERE flight_number = '{flight_number}';'''
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    if result != None:
+        return True
+    else:
+        return False
 
+def fetchPhoneNumber(conn, flight_number):
+    cursor = conn.cursor()
+    sql = f'''SELECT DISTINCT phonenumber FROM users WHERE flight_number = '{flight_number}';'''
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    arr = []
+    for i in result:
+        arr.append(i[0])
+    return arr
 
-print(ratingsJsonObj(getDatatbase()))
+fetchPhoneNumber(getDatatbase(), "AA1234")
 #review(getDatatbase(), "I love delta", "delta gave me free food on the flight", "DL123", 6017918060, True)
 #addAirlineInfo(getDatatbase(), "American Airlines", "AA1111")
 # Testing

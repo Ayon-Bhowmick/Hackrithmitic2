@@ -50,17 +50,19 @@ async def reviewFlight(flight_number: str = Body(...), message: str = Body(...),
     database.addAirlineInfo(db, airline, flight_number)
 
     trueFalseVal = postReview.getSentiment(message)
+    hasFlight = database.hasFlightNumber(flight_number)
+    hasFlightPhoneNum = database.fetchPhoneNumber(flight_number)
     val = database.review(db, title, message, flight_number, phonenumber, trueFalseVal)
 
-    if val == 1: # if added succesffuly, check phone number
+    if val == 1 and hasFlight: # if added succesffuly, check phone number
         # twilio here
         # if flight number already exist in the table, select all the numbers with the same flight number
-        send_text.send_text_msg(6017918060, "hello")
-        return {
-            "message": "Review added successfully"
+        
+        for i in hasFlightPhoneNum:
+            send_text.send_text_msg(i, title+": "+message)
+        return{
+             "message":"Post added succesfully"
         }
-
-
 
     #except:
     #    raise HTTPException(status_code=400, detail="Error adding user to the database")
