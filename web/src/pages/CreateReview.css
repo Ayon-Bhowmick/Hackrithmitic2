@@ -17,6 +17,7 @@
     align-items: center;
     justify-content:center;
     flex-direction: column;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;

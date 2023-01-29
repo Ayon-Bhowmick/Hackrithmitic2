@@ -10,14 +10,15 @@ function InputBox() {
     flightNum: "",
     review:""
   })
+  const [error, setError] = useState("");
 
-  const changeLine = (event) =>{
-    if(event.target.value.split(" ").length >=20){
-      event.target.value = event.target.value + "\n";
+  const handleValidation = (event) => {
+    if(event.target.value === ""){
+        setError("Please enter a value.");
+    }else{
+        setError("");
     }
-    this.setState({inputValue: event.target.value})
-  }
-
+}
 
   function handle(e){
     const newdata={...data}
@@ -51,14 +52,14 @@ function InputBox() {
           <div>
             <label>Flight Number:</label><span>*</span>
             <br/>
-            <input onChange={(e)=>handle(e)} id="flightNum" value={data.flightNum} placeholder='Flight Number' type="text" pattern='[A-Z]{2}[0-9]{4}' className='input_field Flight' maxLength={6} required></input>
+            <input onChange={(e)=>{handle(e); }} onInvalid={()=>{handleValidation()}} id="flightNum" value={data.flightNum} placeholder='Flight Number' type="text" pattern='[A-Z]{2}[0-9]{4}' className='input_field Flight' maxLength={6} required></input>
           </div>
           <div>
           <label>Review:</label> <span>*</span>
             <br/>
             <input onChange={(e)=>handle(e)} id="review" value={data.review} placeholder='Review' type="text" className='input_field Review' required></input>
           </div>
-          <button className='btn'>Submit</button>
+          <button className='btn'  > Submit</button>
         </form>
       </div>
     </div>
