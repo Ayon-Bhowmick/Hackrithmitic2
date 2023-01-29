@@ -19,8 +19,8 @@ def send_text_msg(destination: str , msg: str):
     print(message.sid)
 
 
-def main():
-    send_text_msg('2674296833',"Testing 6: MAKE IT PURPLE")
+# def main():
+#     send_text_msg('2674296833',"Testing 6: MAKE IT PURPLE")
     
-if __name__=="__main__":
-    main()
+# if __name__=="__main__":
+#     main()
