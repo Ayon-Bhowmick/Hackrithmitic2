@@ -8,7 +8,7 @@
 .container{
     margin: 0 auto;
     width: 600px;
-    height: 600px;
+    height: 750px;
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.571) ;
     margin-top: 5vh;
@@ -56,6 +56,7 @@ label{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction:column;
 }
 span{
     color: red;
@@ -66,7 +67,7 @@ span{
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    padding: 0.05rem 0.25rem;
+    /* margin-left: 110px; */
     border-radius:10px;
     text-transform: capitalize;
     color: white;
@@ -103,7 +104,6 @@ span{
     -ms-border-radius: 15px;
     -o-border-radius: 15px;
     display: flex;
-    
 }
 
 .input_field .Title{
