@@ -144,7 +144,6 @@ def ratingsJsonObj(conn):
     sql = f'''SELECT DISTINCT company FROM airlines;'''
     cursor.execute(sql)
     airlines = cursor.fetchall()
-    print(airlines)
 
     for i in airlines:
         sql = f'''SELECT COUNT(*) FROM users
@@ -181,14 +180,14 @@ def ratingsJsonObj(conn):
     table = {}
     for i in result:
         table["company"] = i[0]
-        table["positive"] = i[0]
-        table["negative"] = i[0]
+        table["positive"] = i[1]
+        table["negative"] = i[2]
         array.append(table.copy())
     return array
 
 
 
-    
+print(ratingsJsonObj(getDatatbase()))
 #review(getDatatbase(), "I love delta", "delta gave me free food on the flight", "DL123", 6017918060, True)
 #addAirlineInfo(getDatatbase(), "American Airlines", "AA1111")
 # Testing

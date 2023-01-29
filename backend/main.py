@@ -55,7 +55,7 @@ async def reviewFlight(flight_number: str = Body(...), message: str = Body(...),
     if val == 1: # if added succesffuly, check phone number
         # twilio here
         # if flight number already exist in the table, select all the numbers with the same flight number
-        send_text.send_text_msg()
+        send_text.send_text_msg(6017918060, "hello")
         return {
             "message": "Review added successfully"
         }
