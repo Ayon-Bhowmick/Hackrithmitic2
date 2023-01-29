@@ -66,11 +66,11 @@ const Stats = () => {
     return (
         
 		<div className="app">
-			<nav>
+            <nav>
             <img  id="logo" src={Logo} alt="SkyScout" />
 
             {/* route to Home page */}
-            <div>
+            <div className='nav-btn-container'>
                 <h2 className="nav-btn shadow"><Link to="/">Home</Link></h2>
                 
                 {/* route to Statistics page */}
