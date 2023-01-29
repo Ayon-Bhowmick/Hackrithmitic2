@@ -13,10 +13,14 @@ nav {
     font-weight: lighter;
 }
 
+.nav-btn-container {
+    margin-left: 18vw;
+}
+
 .nav-btn {
     position: relative;
     padding: 10px 5px;
-    margin-left: 20px;
+    margin-left: 2.75vw;
     font-size: 1.75em;
     font-weight: 600;
     display: inline-block;
