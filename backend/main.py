@@ -1,4 +1,5 @@
-from fastapi import FastAPI, Response, Body, HTTPException
+from fastapi import FastAPI, Response, Query
+from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import StreamingResponse
 from routes import *
 
@@ -6,12 +7,25 @@ from routes import *
 api = FastAPI()
 db = database.getDatatbase()
 
+origins = [
+    "http://localhost"
+    "http://localhost:3000/"
+]
+
+api.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @api.get("/ping")
 async def ping():
     return "pong"
 
 @api.get(
-    "/graph/airline",
+    "/graph",
     responses = {
         200: {
             "content": {"image/png": {}}
@@ -19,18 +33,6 @@ async def ping():
     },
     response_class=Response)
 async def get_airline_graph():
-    return StreamingResponse(graphs.graphAirlines(), media_type="image/png")
-
-# !change this to get_airport_graph
-@api.get(
-    "/graph/airport",
-    responses = {
-        200: {
-            "content": {"image/png": {}}
-        }
-    },
-    response_class=Response)
-async def get_airport_graph():
     return StreamingResponse(graphs.graphAirlines(), media_type="image/png")
 
 @api.get("/display")

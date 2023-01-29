@@ -1,13 +1,33 @@
 import React, { useState } from 'react';
 import Axios from 'axios'
+import './CreateReview.css'
+
 function InputBox() {
   
+  const [Flight, setFlight] = useState('');
+  const [Review, setReview] = useState('');
+  const [error, setError] = useState(false);
+
+  function handleSubmit(e){
+    console.log('entered');
+    e.preventDefault();
+    if(Flight.length === 0 || Review.length === 0){
+      setError(true);
+    }
+    if(Flight&&Review){
+      console.log('flight: ', Flight, '\nReview ', Review);
+    }
+
+  }
+  
+
   const url = ""
   const [data, setData]=useState({
     title: "",
     flightNum: "",
     review:""
   })
+
 
   function handle(e){
     const newdata={...data}
@@ -28,22 +48,29 @@ function InputBox() {
     })
   }
   return (
-    <div>
-      <h1>
+    <div className='container'>
+      <h1 className='header'>
         Write Your Review
       </h1>
-      <div>
-        <form onSubmit={(e)=>submit(e)}>
+      <div className='sub_form'>
+        <form onSubmit={(e)=>{submit(e); handleSubmit(e)}}>
           <div>
-          <input onChange={(e)=>handle(e)} id="title" value={data.title} placeholder='Title' type="text"></input>
+          <label>Title: <br/></label>            
+          <input onChange={(e)=>handle(e)} id="title" value={data.title} placeholder='Title' type="text" className='input_field Title'></input>
           </div>
           <div>
-            <input onChange={(e)=>handle(e)} id="flightNum" value={data.flightNum} placeholder='Flight Number' type="text"></input>
+            <label>Flight Number:</label><span> *</span>
+            <br/>
+            <input onChange={(e)=>{handle(e); setFlight(e.target.value);}} id="flightNum" value={data.flightNum} placeholder='Flight Number' type="text" pattern='[A-Z]{2}[0-9]{4}' className='input_field Flight' maxLength={6} required></input>
+            {Flight.length>0? 
+            <label>Flight needs to be specified!</label>:""}
           </div>
           <div>
-            <input onChange={(e)=>handle(e)} id="review" value={data.review} placeholder='Review' type="text"></input>
+          <label>Review:</label> <span> *</span>
+            <br/>
+            <input onChange={(e)=>{handle(e); setReview(e.target.value);}} id="review" value={data.review} placeholder='Review' type="text" className='input_field Review' required></input>
           </div>
-          <button>Submit</button>
+          <button className='btn'  > Submit</button>
         </form>
       </div>
     </div>
