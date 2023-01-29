@@ -16,7 +16,7 @@ def send_text_msg(destination: str , msg: str):
             from_='+19096711856',
             to=destination
         )
-
+    return 
     print(message.sid)
 
 

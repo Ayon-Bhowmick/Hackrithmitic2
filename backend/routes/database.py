@@ -1,11 +1,17 @@
 import psycopg2
+import os
 import json
- 
-DB_NAME = "pdmyimse"
-DB_USER = "pdmyimse"
-DB_PASS = "jXzVyAlo_BZgjHU5rk7gR66BD7Y_2Y4l"
-DB_HOST = "raja.db.elephantsql.com"
-DB_PORT = "5432"
+
+# DB_NAME = "pdmyimse"
+DB_NAME = os.environ["DB_NAME"]
+# DB_USER = "pdmyimse"
+DB_USER = os.environ["DB_NAME"]
+# DB_PASS = "jXzVyAlo_BZgjHU5rk7gR66BD7Y_2Y4l"
+DB_PASS = os.environ["DB_PASS"]
+# DB_HOST = "raja.db.elephantsql.com"
+DB_HOST = os.environ["DB_HOST"]
+DB_PORT = os.environ["DB_PORT"]
+# DB_PORT = "5432"
  # postgres://username:password@hostname:port/database
  # postgres://pdmyimse:jXzVyAlo_BZgjHU5rk7gR66BD7Y_2Y4l@raja.db.elephantsql.com/pdmyimse
 def getDatatbase():
@@ -215,4 +221,3 @@ fetchPhoneNumber(getDatatbase(), "AA1234")
 #print(oogieboogie)
 
 #print(getMessageData(getDatatbase()))
-
