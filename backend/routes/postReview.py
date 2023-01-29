@@ -57,6 +57,4 @@ def getSentiment(review):
         model='large',
         inputs=[review],
         examples=[Example("The order came 5 days early", "positive"), Example("The item exceeded my expectations", "positive"), Example("I ordered more for my friends", "positive"), Example("I would buy this again", "positive"), Example("I would recommend this to others", "positive"), Example("The package was damaged", "negative"), Example("The order is 5 days late", "negative"), Example("The order was incorrect", "negative"), Example("I want to return my item", "negative"), Example("The item\'s material feels low quality", "negative"), Example("The flight was delayed", "negative"), Example("The plane was very late", "negative"), Example("I arrived early", "positive"), Example("There was a lot of turbulence", "negative"), Example("The flight was very smooth", "positive"), Example("The flight was very comfortable", "positive"), Example("The flight was very bumpy", "negative"), Example("The flight was very loud", "negative"), Example("The flight was very quiet", "positive"), Example("The flight was very cold", "negative"), Example("The flight was very hot", "negative") ])
-    print(response.classifications[0].json())
-
-getSentiment("The flight sucked")
+    print(response.classifications[0])
