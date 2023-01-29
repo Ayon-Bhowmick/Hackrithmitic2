@@ -198,3 +198,7 @@ footer {
     flexWrap: 'nowrap';
     flexDirection: 'row';
 } */
+
+.add-post-container {
+    text-align: center;
+}

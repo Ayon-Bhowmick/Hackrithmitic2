@@ -1,70 +1,94 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
+import { FaTrash , FaHeart, FaArrowCircleLeft } from "react-icons/fa";
+import {Link, Routes, Route, useNavigate} from 'react-router-dom';
 import Logo from './images/logo.png';
-import { Link } from "react-router-dom";
-import Axios from 'axios'
-import './Home.css'
-import './CreateReview.css'
+import "./Home.css";
+import "./CreateReview.css";
 
-function InputBox() {
+/**
+ * 
+ * @returns //sets up messages, title and body
+ */
+const Create = () => {
+  const [title, setTitle] = useState('');
+  const [flights, setFlights] = useState('');
+	const [body, setBody] = useState('');
 
-  const [Flight, setFlight] = useState('');
-  const [Review, setReview] = useState('');
-  let [error, setError] = useState(false);
-  let [ReviewError, setReviewError] = useState(false);
+	// handle form submission
+	const handleSubmit = (e) => {
+		e.preventDefault();
+    console.log(flights);
+    console.log(title);
+    console.log(body);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    let regex = /^[A-Z]{2}[0-9]{4}$/g;
-    let found = Flight.match(regex);
-    console.log('Found: ', found);
+		addPosts(title, flights, body);
+		// navigate('/');
+	};
 
-    if (found == null) {
-      setError(true);
+	const navigate = useNavigate();
+
+
+	/**
+	 * POST request to post to database using title and body boxes
+	 * @param {text} title 
+	 * @param {text} body 
+	 */
+	const addPosts = async (titleSubmit, num, BodySubmit) => {
+    // resonse_object.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+		try {
+			const requestOptions = {
+				method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
+        },
+				body: JSON.stringify({ title: title, message: BodySubmit, flight_number: num, phonenumber: ""})
+			};
+			fetch('https://sky-scout.onrender.com/postreview', requestOptions)	
+			setTitle('');
+      setFlights('');
+			setBody('');
+			console.log(title);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	
+	const css = `
+    .my-element {
+		text-align: center;
+		padding-top: 5vh;
+		padding-bottom: 5vh;
+		padding-right: 5vh;
     }
-    if (Review.length === 0) {
-      setReviewError(true);
-    }
-    else {
-      setError(false);
-    }
-    // if (Flight && Review) {
-      // console.log('Flight: ', Flight, '\nReview: ', Review);
-    // }
 
-  }
+	textarea { 
+		font-family: 'Nunito' ; 
+		font-size: medium;
+		width: 20vw;
+		height: 20vh;
+		resize: vertical; 
+		padding: 1em;
+	}
 
-
-  const url = "https://sky-scout.onrender.com/postreview";
-  const [data, setData] = useState({
-    title: "",
-    flightNum: "",
-    review: "",
-    phoneNum: "",
-  })
+	`
+// 	const navigation = this.props.navigation;
 
 
-  function handle(e) {
-    const newdata = { ...data }
-    newdata[e.target.id] = e.target.value
-    setData(newdata)
-    // console.log(newdata)
-  }
+// 	const handleFormSubmit = event => {
+//     event.preventDefault();
 
-  function submit(e) {
-    e.preventDefault();
-    Axios.post(url, {
-      title: data.name,
-      flightNum: data.flightNum,
-      review: data.review,
-      phoneNum: data.phoneNum
-    })
-      .then(res => {
-        console.log(res.data);
-      })
-  }
-  return (
-    <div>
-			<nav>
+// 	navigation.navigate('/Home')
+//   };
+
+//html with the wepage ui: structred the same order as the web is displayed
+	return (
+		<div className="app">
+			<style>{css}</style>
+
+      <nav>
             <img  id="logo" src={Logo} alt="SkyScout" />
 
             {/* route to Home page */}
@@ -78,52 +102,54 @@ function InputBox() {
                 <h2 className="nav-btn shadow"><Link to="/create">Create Review</Link></h2>
             </div>
 			</nav>
+			<div  className="my-element">
+				<h1>Create Review</h1>
+			</div>
+			<div className="add-post-container">
+				<form onSubmit={handleSubmit}>
+        <h2> Flight Number </h2>
 
-      <div className='container'>
+        <input
+          type="text"
+          className="form-control"
+          name="flights"
+          value={flights}
+          onChange={(e) => setFlights(e.target.value)}
+        />
+				<h2> Title </h2>
 
-        <h1 className='header'>
-          Write Your Review
-        </h1>
-        <div className='sub_form'>
-          <form onSubmit={(e) => { handleSubmit(e); submit(e); }}>
-            <div>
-              <label>Title: <br /></label>
-              <input onChange={(e) => handle(e)} id="title" value={data.title} placeholder='Title' type="text" className='input_field Title'></input>
-            </div>
-            <div>
-              <label>Phone Number:</label>
-              <br />
-              <input onChange={(e) => { handle(e); }} id="phonenum" value={data.phonenum} placeholder='xxx-xxx-xxxx' type="text" pattern='[0-9]{3}[0-9]{3}[0-9]{4}' className='input_field Phone' maxLength={10} ></input>
-            </div>
-            <div>
-              <label>Flight Number:</label><span> *</span>
-              <br />
-              <input onChange={(e) => { handle(e); setFlight(e.target.value); }} id="flightNum" value={data.flightNum} placeholder='Flight Number' type="text" pattern='[A-Z]{2}[0-9]{4}' className='input_field Flight' maxLength={6} required></input>
-              {(error === true) ?
-                <label className='error'>Flight needs to be specified! <br />Example: AA1234</label> : ""}
-            </div>
-            <div>
-              <label>Review:</label> <span> *</span>
-              <br />
-              <input onChange={(e) => { handle(e); setReview(e.target.value); }} id="review" value={data.review} placeholder='Review' type="text" className='input_field Review' required></input>
-              {ReviewError && Review.length <= 0 ?
-                <label className='error'>Review needs to be entered!</label> : ""}
-            </div>
-            <button className='btn' onChange={(e) => handleSubmit(e)} onClick={(e) => { handleSubmit(e) }}> Submit</button>
-            {/* {error&&Flight?"hello":"no error"} */}
-          </form>
-        </div>
-      </div>
+					<input
+						type="text"
+						className="form-control"
+						name="title"
+						value={title}
+						onChange={(e) => setTitle(e.target.value)}
+					/>
+				<h2> Message </h2>
+				<textarea
+						name=""
+						className="form-control"
+						id=""
+						cols="10"
+						rows="8"
+					value={body}
+						onChange={(e) => setBody(e.target.value)}
+				></textarea>
+	
+				{/* <input
+					type="text"
+					className="form-control"
+					name="title"
+					value={body}
+					onChange={(e) => setBody(e.target.value)}
+				/> */}
+					<button type="submit" ><b><font size="+1"> Submit </font> </b></button>
+				</form>
+			</div>
+		</div>
+	);
+};
 
-      {/* <div className="footer-container">
-        <footer>
-          <div id="copyright">
-            <p>© 2023 SkyScout Hackrithimic 2 Hackathon Team</p>
-          </div>
-        </footer>
-      </div> */}
-    </div>
-  );
-}
+export default Create;
 
-export default InputBox;
+	
