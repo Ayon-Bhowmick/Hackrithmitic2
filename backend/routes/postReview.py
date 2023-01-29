@@ -1,5 +1,6 @@
 import cohere
 from cohere.classify import Example
+import os
 
 def getAirline(flightNumber) -> str:
     map = {
@@ -52,7 +53,7 @@ def getAirline(flightNumber) -> str:
     return map[code]
 
 def getSentiment(review) -> bool:
-    co = cohere.Client("qjXHW7uXtFQR6Nz5Qml8L2oODO7CYUMxksGN331r")
+    co = cohere.Client(os.environ["cohereKey"])
     response = co.classify(
         model='large',
         inputs=[review],
