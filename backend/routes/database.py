@@ -60,7 +60,8 @@ def getMessageData(conn):
     cursor = conn.cursor()
     array = []
     table = {}
-    getAllMessage = "SELECT title, message, flight_number, created_at FROM users;"
+    # SELECT message FROM users WHERE message IS NOT NULL;
+    getAllMessage = "SELECT title, message, flight_number, created_at FROM users WHERE message IS NOT NULL;"
     cursor.execute(getAllMessage)
     fetch = cursor.fetchall()
     for row in fetch:
@@ -79,9 +80,9 @@ def getMsgByAirline(conn, airline):
     cursor = conn.cursor()
     array = []
     table = {}
-    getAllMessage = f'''SELECT DISTINCT title, message, users.flight_number, created_at FROM users 
+    getAllMessage = f'''SELECT title, message, users.flight_number, created_at FROM users
                     JOIN airlines ON users.flight_number = airlines.flight_number
-                    WHERE airlines.company = '{airline}';'''
+                    WHERE message IS NOT NULL AND airlines.company = '{airline}';'''
     cursor.execute(getAllMessage)
     fetch = cursor.fetchall()
     for row in fetch:
@@ -97,7 +98,7 @@ def getMsgByFlight(conn, flight):
     array = []
     table = {}
     getAllMessage = f'''SELECT title, message, flight_number, created_at FROM users
-                    WHERE flight_number = '{flight}';;'''
+                    WHERE flight_number = '{flight}' AND message IS NOT NULL;'''
     cursor.execute(getAllMessage)
     fetch = cursor.fetchall()
     for row in fetch:
