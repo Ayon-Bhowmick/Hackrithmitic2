@@ -22,7 +22,7 @@ const Create = () => {
     console.log(body);
 
     addPosts(title, flights, body);
-    // navigate('/');
+    navigate('/');
   };
 
   const navigate = useNavigate();
