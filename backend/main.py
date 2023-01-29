@@ -4,17 +4,15 @@ from starlette.responses import StreamingResponse
 from routes import *
 
 
+
+
 api = FastAPI()
 db = database.getDatatbase()
 
-origins = [
-    "http://localhost"
-    "http://localhost:3000/"
-]
 
 api.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -39,25 +37,34 @@ async def get_airline_graph():
 async def getMessageData():
     return database.getMessageData(db)
 
-@api.get("/findbyairline/{airline}")
-async def getMsgByAirline(airline: str):
+@api.get("/findbyairline")
+async def getMsgByAirline(airline: str = Body(..., embed=True)):
     return database.getMsgByAirline(db, airline)
 
-@api.get("/findbyflight/{flightId}")
-async def getMsgByFlight(flightId: str):
-    return database.getMsgByFlight(db, flightId)
+@api.get("/findbyflight")
+async def getMsgByFlight(flight_number: str = Body(..., embed=True)):
+
+    return database.getMsgByFlight(db, flight_number)
 
 @api.post("/postreview")
-async def reviewFlight(title: str = Body(...), message: str = Body(...), flight_number: str = Body(...), phonenumber: str = Body(...)):
-    try:
+async def reviewFlight(flight_number: str = Body(...), message: str = Body(...), title: str = Body(...), phonenumber: str = Body(...)):
+    airline = postReview.getAirline(flight_number)
+    database.addAirlineInfo(db, airline, flight_number)
 
-        res = database.reviewFlight(db, title, message, flight_number, phonenumber)
-        if res == 1:
-            return {
-                "message":"Post added successfully"
-            }
-    except:
-        raise HTTPException(status_code=400, detail="Error adding user to the database")
+    trueFalseVal = postReview.getSentiment(message)
+    val = database.review(db, title, message, flight_number, phonenumber, trueFalseVal)
+
+    if val == 1: # if added succesffuly, check phone number
+        # twilio here
+
+        return {
+            "message": "Review added successfully"
+        }
+
+
+
+    #except:
+    #    raise HTTPException(status_code=400, detail="Error adding user to the database")
 
 
 

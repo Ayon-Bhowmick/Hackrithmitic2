@@ -30,9 +30,8 @@ def getDatatbase():
     try:
         createAirlineTable = '''CREATE TABLE airlines (
                             id SERIAL PRIMARY KEY,
-                            airport VARCHAR(255) NOT NULL,
                             company VARCHAR(255) NOT NULL,
-                            flight_number VARCHAR(255) NOT NULL
+                            flight_number VARCHAR(255) NOT NULL UNIQUE
                             );'''
         createUserTable = '''CREATE TABLE users (
                             id SERIAL PRIMARY KEY,
@@ -52,8 +51,6 @@ def getDatatbase():
                             company VARCHAR(255) UNIQUE
                             );
                             '''
-        insertNewFlight = '''INSERT INTO airline (flight_number, airport, company)
-                        VALUES ('AA9999', 'JFK', 'American Airlines');'''
 
     except:
         pass
@@ -83,8 +80,8 @@ def getMsgByAirline(conn, airline):
     array = []
     table = {}
     getAllMessage = f'''SELECT DISTINCT title, message, users.flight_number, created_at FROM users 
-                    JOIN airline ON users.airline_id = airline.id
-                    WHERE airline.company = '{airline}';'''
+                    JOIN airlines ON users.flight_number = airlines.flight_number
+                    WHERE airlines.company = '{airline}';'''
     cursor.execute(getAllMessage)
     fetch = cursor.fetchall()
     for row in fetch:
@@ -99,9 +96,8 @@ def getMsgByFlight(conn, flight):
     cursor = conn.cursor()
     array = []
     table = {}
-    getAllMessage = f'''SELECT DISTINCT title, message, users.flight_number, created_at FROM users
-                    JOIN airline ON users.airline_id = airline.id
-                    WHERE users.flight_number = '{flight}';;'''
+    getAllMessage = f'''SELECT title, message, flight_number, created_at FROM users
+                    WHERE flight_number = '{flight}';;'''
     cursor.execute(getAllMessage)
     fetch = cursor.fetchall()
     for row in fetch:
@@ -111,11 +107,6 @@ def getMsgByFlight(conn, flight):
         table["created_at"] = row[3].strftime("%Y-%m-%d %H:%M:%S")
         array.append(table.copy())
     return array
-
-
-def addUser(cursor, user, flight, phoneNumber, mess):
-    
-    pass
 
 def subscribe(conn, flight, phoneNumber):
     try:
@@ -129,11 +120,22 @@ def subscribe(conn, flight, phoneNumber):
         print(e)
 
 
-def review(conn, title, message, flightNum, phoneNum):
+def review(conn, title, message, flightNum, phoneNum, val):
     try:
         cursor = conn.cursor()
-        sql = f'''INSERT INTO users (title, message, flight_number, phonenumber) VALUES (%s, %s, %s, %s);'''
-        values = (title, message, flightNum, phoneNum)
+        sql = f'''INSERT INTO users (title, message, flight_number, phonenumber, ispositive) VALUES (%s, %s, %s, %s, %s);'''
+        values = (title, message, flightNum, phoneNum, val)
+        cursor.execute(sql, values)
+        conn.commit()
+        return 1
+    except Exception as e:
+        print(e)
+
+def addAirlineInfo(conn, airlineName, flightNum):
+    try:
+        cursor = conn.cursor()
+        sql = f'''INSERT INTO airlines (company, flight_number) VALUES (%s, %s);'''
+        values = (airlineName, flightNum)
         cursor.execute(sql, values)
         conn.commit()
         return 1
@@ -141,10 +143,13 @@ def review(conn, title, message, flightNum, phoneNum):
         print(e)
 
     
-review(getDatatbase(), "I love delta", "delta gave me free food on the flight", "DL123", 6017918060)
-
+#review(getDatatbase(), "I love delta", "delta gave me free food on the flight", "DL123", 6017918060, True)
+#addAirlineInfo(getDatatbase(), "American Airlines", "AA1111")
 # Testing
 #subscribe(getDatatbase(), "AA1234", 6017918060)
 #getPosts(getDatatbase())
 #oogieboogie = getMsgByFlight(getDatatbase(), "AA1234")
 #print(oogieboogie)
+
+print(getMessageData(getDatatbase()))
+

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 import Logo from './images/logo.png';
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Itim&family=Montserrat:wght@100;500;600;700&display=swap');
 </style>
 
 const Home = () => {
