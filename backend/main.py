@@ -48,14 +48,17 @@ async def getMsgByFlight(flightId: str):
     return database.getMsgByFlight(db, flightId)
 
 @api.post("/postreview")
-async def reviewFlight(title: str = Body(...), message: str = Body(...), flight_number: str = Body(...), phonenumber: str = Body(...)):
+async def reviewFlight(flight_number: str = Body(...)):
     try:
-
-        res = database.reviewFlight(db, title, message, flight_number, phonenumber)
-        if res == 1:
-            return {
-                "message":"Post added successfully"
-            }
+        airline = postReview.getAirline(flight_number) #returns airline as string
+        database.addAirlineInfo(airline, flight_number)
+        return 1
+        #val = postReview.getSentiment(message) # is T/F
+        #res = database.reviewFlight(db, title, message, flight_number, phonenumber, val)
+        #if res == 1:
+        #    return {
+        #        "message":"Post added successfully"
+        #    }
     except:
         raise HTTPException(status_code=400, detail="Error adding user to the database")
 
