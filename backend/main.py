@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Response, Query
+from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import StreamingResponse
 from routes import *
 
