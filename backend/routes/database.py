@@ -80,7 +80,7 @@ def getMsgByAirline(conn, airline):
     array = []
     table = {}
     getAllMessage = f'''SELECT DISTINCT title, message, users.flight_number, created_at FROM users 
-                    JOIN airlines ON users.airline_id = airlines.id
+                    JOIN airlines ON users.flight_number = airlines.flight_number
                     WHERE airlines.company = '{airline}';'''
     cursor.execute(getAllMessage)
     fetch = cursor.fetchall()
@@ -96,9 +96,8 @@ def getMsgByFlight(conn, flight):
     cursor = conn.cursor()
     array = []
     table = {}
-    getAllMessage = f'''SELECT DISTINCT title, message, users.flight_number, created_at FROM users
-                    JOIN airlines ON users.airline_id = airlines.id
-                    WHERE users.flight_number = '{flight}';;'''
+    getAllMessage = f'''SELECT title, message, flight_number, created_at FROM users
+                    WHERE flight_number = '{flight}';;'''
     cursor.execute(getAllMessage)
     fetch = cursor.fetchall()
     for row in fetch:
@@ -108,11 +107,6 @@ def getMsgByFlight(conn, flight):
         table["created_at"] = row[3].strftime("%Y-%m-%d %H:%M:%S")
         array.append(table.copy())
     return array
-
-
-def addUser(cursor, user, flight, phoneNumber, mess):
-    
-    pass
 
 def subscribe(conn, flight, phoneNumber):
     try:
