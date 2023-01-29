@@ -59,6 +59,12 @@ async def reviewFlight(flight_number: str = Body(...)):
         #    return {
         #        "message":"Post added successfully"
         #    }
+        val = postReview.veri
+        res = database.reviewFlight(db, title, message, flight_number, phonenumber)
+        if res == 1:
+            return {
+                "message":"Post added successfully"
+            }
     except:
         raise HTTPException(status_code=400, detail="Error adding user to the database")
 

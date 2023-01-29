@@ -1,18 +1,17 @@
-*,*::before,*::after{
+/* body {
     font-size: 20px;
     margin: auto;
     padding: auto;
-    font-family:  Roboto;
-    
-}
+    font-family:  font-family: 'Montserrat', sans-serif;;
+} */
 
 .container{
+    margin: 0 auto;
     width: 600px;
     height: 600px;
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.571) ;
-    /* border: 2px rgb(134, 133, 133); */
-    margin-top: 100px;
+    margin-top: 5vh;
     display: flex;
     align-items: center;
     justify-content:center;
@@ -38,15 +37,20 @@
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
 } */
-.header{
+/* .header{
     font-size: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
-}
+} */
 label{
     font-weight: 800;
+}
+
+.error{
+    color: red;
+    font-size: 15px;
 }
 .sub_form{
     display: flex;
@@ -109,7 +113,12 @@ span{
 .input_field .Flight{
     border: 2.25px black solid;
 }
-.input_field_Review{
-    
 
+
+.footer-container {
+    min-height: 70px;
+    width: 100%;
+    align-items: center; /*centers them vertically*/
+    position: absolute;
+    bottom: 0;
 }
