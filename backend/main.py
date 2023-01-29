@@ -43,7 +43,7 @@ async def getMsgByFlight(flightId: str):
     return database.getMsgByFlight(db, flightId)
 
 @api.post("/postreview")
-async def reviewFlight(flight_number: str = Body(...)):
+async def reviewFlight(flight_number: str = Body(..., embed=True)):
     #try:
 
     return flight_number

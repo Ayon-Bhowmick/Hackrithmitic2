@@ -51,7 +51,7 @@ def getAirline(flightNumber) -> str:
     code = flightNumber[:2]
     return map[code]
 
-def getSentiment(review):
+def getSentiment(review) -> bool:
     co = cohere.Client("qjXHW7uXtFQR6Nz5Qml8L2oODO7CYUMxksGN331r")
     response = co.classify(
         model='large',
